@@ -21,8 +21,8 @@ export default class Search extends React.Component {
     render() {
         return (
             <div style={{display: 'flex', justifyContent: 'center'}}>
-                <input style={{width: 400, padding: 12}} type='text' value={this.state.text} onChange={this.handleOnChange.bind(this)} placeholder='搜索：区县 学校 老师' />
-                <button onClick={this.handleSearch.bind(this)}>搜索</button>
+                <input style={{width: 600, padding: 12, border: 'none', borderRadius: 3}} type='text' value={this.state.text} onChange={this.handleOnChange.bind(this)} placeholder='搜索：区县 学校 老师' />
+                <button style={{marginLeft: 20, padding: '0 30px', background: '#17aaf7', border: 'none', borderRadius: 3, color: '#FFF'}} onClick={this.handleSearch.bind(this)}>搜索</button>
             </div>
         )
     }

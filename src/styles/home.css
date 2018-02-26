@@ -1,0 +1,55 @@
+.home {
+    text-align: center;
+    background: url(../images/back.png) no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    color: #FFF;
+    overflow: auto;
+}
+
+.home>.cards>div:nth-child(1) {
+    background: url(../images/tea_stu.png) no-repeat center center;
+    background-size: contain;
+}
+
+.home>.cards>div:nth-child(2) {
+    background: url(../images/tea_stu.png) no-repeat center center;
+    background-size: contain;
+}
+
+.home>.cards>div:nth-child(3) {
+    background: url(../images/tea_stu.png) no-repeat center center;
+    background-size: contain;
+}
+
+.home>.cards>div:nth-child(4) {
+    background: url(../images/tea_stu.png) no-repeat center center;
+    background-size: contain;
+}
+
+.home>.cards>div:nth-child(5) {
+    background: url(../images/tea_stu.png) no-repeat center center;
+    background-size: contain;
+}
+
+.home>.cards>div:nth-child(6) {
+    background: url(../images/tea_stu.png) no-repeat center center;
+    background-size: contain;
+}
+
+.home>.cards>div:nth-child(7) {
+    background: url(../images/tea_stu.png) no-repeat center center;
+    background-size: contain;
+}
+
+.home>.cards>div:nth-child(8) {
+    background: url(../images/tea_stu.png) no-repeat center center;
+    background-size: contain;
+}
+
+.yx-logo {
+    width: 100px;
+    height: 59px;
+    background: url(../images/yx_logo.png) no-repeat center center;
+    background-size: contain;
+}

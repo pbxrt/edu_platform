@@ -9,7 +9,7 @@ import LessonData from './containers/lessonData';
 import SelectedSubjects from './containers/selectedSubjects';
 import TeaStuCompare from './containers/teaStuCompare';
 import BasicInfo from './containers/basicInfo';
-import './App.css';
+import './styles/App.css';
 
 class App extends Component {
     render() {

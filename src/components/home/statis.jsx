@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Item = ({ count, text }) => (
-    <div style={{textAlign: 'center'}}>
+    <div>
         <div style={{fontSize: 30}} >{count}</div>
         <div style={{fontSize: 12}} >{text}</div>
     </div>
