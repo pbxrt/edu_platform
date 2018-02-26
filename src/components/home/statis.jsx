@@ -2,8 +2,8 @@ import React from 'react';
 
 const Item = ({ count, text }) => (
     <div>
-        <div style={{fontSize: 30}} >{count}</div>
-        <div style={{fontSize: 12}} >{text}</div>
+        <div style={{fontSize: 50}} >{count}</div>
+        <div style={{fontSize: 16}} >{text}</div>
     </div>
 );
 

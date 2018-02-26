@@ -19,5 +19,5 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://younger-peng.github.io/edu_platform"
+  "homepage": "."
 }

@@ -41,7 +41,6 @@ class Home extends React.Component {
                         ))
                     }
                 </div>
-                <div onClick={this.onTest.bind(this)}>test</div>
             </div>
         )    
     }
