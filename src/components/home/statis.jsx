@@ -8,7 +8,7 @@ const Item = ({ count, text }) => (
 );
 
 const Statis = ({ districts, papers, schools }) => (
-    <div style={{display: 'flex', justifyContent: 'space-between'}} >
+    <div style={{display: 'flex', justifyContent: 'space-between', flex: 1}} >
         <Item count={districts} text={'区县数'} />
         <Item count={papers} text={'试卷数'} />
         <Item count={schools} text={'学校数'} />

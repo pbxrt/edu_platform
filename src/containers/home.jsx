@@ -29,14 +29,14 @@ class Home extends React.Component {
             <div className='home'>
                 <Header city={'宁德市'} logOut={this.logOut.bind(this)} />
                 <Search />
-                <div style={{width: 1320, margin: '50px auto'}} >
+                <div style={{width: 1230, display: 'flex', alignItems: 'center', height: 'calc(100% - 620px)', margin: '0 auto', paddingBottom: 30}} >
                     <Statis districts={13} papers={828374273} schools={168} />
                 </div>
-                <div className='cards' style={{width: 1320, display: 'flex', margin: '0 auto', flexFlow: 'row wrap', justifyContent: 'space-between'}} >
+                <div className='cards' style={{width: 1234, height: 400, display: 'flex', margin: '0 auto', flexFlow: 'row wrap', justifyContent: 'space-between', alignItems: 'space-between'}} >
                     {
                         _.map(cards, link => (
-                            <div key={link.route} style={{width: 316, height: 216, marginBottom: 20}}>
-                                <Link to={link.route} >{link.label}</Link>
+                            <div key={link.route} style={{width: 294, height: 191, marginBottom: 18, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', borderTopLeftRadius: 16, borderTopRightRadius: 16}}>
+                                <Link to={link.route} style={{color: '#FFF', marginBottom: 10, textDecoration: 'none', fontSize: 14}} >{link.label}</Link>
                             </div>
                         ))
                     }

@@ -26,12 +26,12 @@ class Time extends React.Component {
 }
 
 const Header = ({ city, logOut }) => (
-    <div style={{padding: '50px 90px 30px 90px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >
+    <div style={{height: 130, padding: '0 90px 0 90px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >
         <div style={{flex: 1, textAlign: 'left'}} >
             <div className='yx-logo'></div>
         </div>
-        <div style={{fontSize: 50, flex: 1}} >{city}</div>
-        <div style={{flex: 1, display: 'flex', fontSize: 20, alignItems: 'center', justifyContent: 'flex-end'}} >
+        <div style={{fontSize: 40, flex: 1}} >{city}</div>
+        <div style={{flex: 1, display: 'flex', fontSize: 14, alignItems: 'center', justifyContent: 'flex-end'}} >
             <Time />
             <span style={{marginLeft: '2em', cursor: 'pointer'}} onClick={logOut}>退出</span>
         </div>

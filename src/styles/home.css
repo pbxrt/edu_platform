@@ -2,7 +2,7 @@
     text-align: center;
     background: url(../images/back.png) no-repeat center center;
     background-size: cover;
-    height: 100vh;
+    height: 100%;
     color: #FFF;
     overflow: auto;
 }
@@ -11,49 +11,45 @@
     font-family: 'Aldrich', sans-serif;
 }
 
-.home>.cards>div:nth-child(1) {
-    background: url(../images/tea_stu.png) no-repeat center center;
+.home>.cards>div {
     background-size: contain;
+}
+
+.home>.cards>div:nth-child(1) {
+    background: url(../images/1.png) no-repeat center center;
 }
 
 .home>.cards>div:nth-child(2) {
-    background: url(../images/tea_stu.png) no-repeat center center;
-    background-size: contain;
+    background: url(../images/2.png) no-repeat center center;
 }
 
 .home>.cards>div:nth-child(3) {
-    background: url(../images/tea_stu.png) no-repeat center center;
-    background-size: contain;
+    background: url(../images/3.png) no-repeat center center;
 }
 
 .home>.cards>div:nth-child(4) {
-    background: url(../images/tea_stu.png) no-repeat center center;
-    background-size: contain;
+    background: url(../images/4.png) no-repeat center center;
 }
 
 .home>.cards>div:nth-child(5) {
-    background: url(../images/tea_stu.png) no-repeat center center;
-    background-size: contain;
+    background: url(../images/5.png) no-repeat center center;
 }
 
 .home>.cards>div:nth-child(6) {
-    background: url(../images/tea_stu.png) no-repeat center center;
-    background-size: contain;
+    background: url(../images/6.png) no-repeat center center;
 }
 
 .home>.cards>div:nth-child(7) {
-    background: url(../images/tea_stu.png) no-repeat center center;
-    background-size: contain;
+    background: url(../images/7.png) no-repeat center center;
 }
 
 .home>.cards>div:nth-child(8) {
-    background: url(../images/tea_stu.png) no-repeat center center;
-    background-size: contain;
+    background: url(../images/8.png) no-repeat center center;
 }
 
 .yx-logo {
-    width: 100px;
-    height: 59px;
+    width: 163px;
+    height: 51px;
     background: url(../images/yx_logo.png) no-repeat center center;
     background-size: contain;
 }
