@@ -3,6 +3,7 @@
     background: url(../images/back.png) no-repeat center center;
     background-size: cover;
     height: 100%;
+    min-width: 1300px;
     color: #FFF;
     overflow: auto;
 }

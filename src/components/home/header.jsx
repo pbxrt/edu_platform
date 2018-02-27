@@ -26,7 +26,7 @@ class Time extends React.Component {
 }
 
 const Header = ({ city, logOut }) => (
-    <div style={{height: 130, padding: '0 90px 0 90px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >
+    <div style={{height: 130, padding: '0 115px 0 115px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >
         <div style={{flex: 1, textAlign: 'left'}} >
             <div className='yx-logo'></div>
         </div>
