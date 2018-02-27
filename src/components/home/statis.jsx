@@ -2,7 +2,7 @@ import React from 'react';
 
 const Item = ({ count, text }) => (
     <div>
-        <div style={{fontSize: 50}} >{count}</div>
+        <div className='number' style={{fontSize: 50}} >{count.toLocaleString()}</div>
         <div style={{fontSize: 16}} >{text}</div>
     </div>
 );

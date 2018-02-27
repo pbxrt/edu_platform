@@ -7,6 +7,10 @@
     overflow: auto;
 }
 
+.home .number {
+    font-family: 'Aldrich', sans-serif;
+}
+
 .home>.cards>div:nth-child(1) {
     background: url(../images/tea_stu.png) no-repeat center center;
     background-size: contain;

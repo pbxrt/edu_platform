@@ -8,3 +8,11 @@ body {
 *, *:before, *:after {
     box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'Aldrich';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Aldrich/Aldrich-Regular.eot);
+  src: local('Aldrich Regular'), local('Aldrich-Regular'), local('Aldrich'), url(../fonts/Aldrich/Aldrich-Regular.ttf) format('truetype'), url(../fonts/Aldrich/Aldrich-Regular.svg#Aldrich) format('svg'), url(../fonts/Aldrich/Aldrich-Regular.woff) format('woff'), url(../fonts/Aldrich/Aldrich-Regular.eot?#iefix) format('embedded-opentype'), url(../fonts/Aldrich/Aldrich-Regular.woff2) format('woff2');
+}
