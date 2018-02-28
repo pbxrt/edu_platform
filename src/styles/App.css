@@ -2,3 +2,11 @@
     height: 100vh;
     min-height: 800px;
 }
+
+.report {
+    background-color: #101b66;
+}
+
+.section {
+    padding: 40px 0 60px 0;
+}

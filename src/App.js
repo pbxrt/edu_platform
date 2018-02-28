@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Home from './containers/home';
+import Nav from './containers/nav';
 import EduResourceDis from './containers/eduResourceDis';
 import AddMore from './containers/addMore';
 import CourseData from './containers/courseData';
@@ -16,14 +17,15 @@ class App extends Component {
         return (
             <div className="App">
                 <Route path='/' exact component={Home} />
-                <Route path='/edu/resource/distribution' component={EduResourceDis} />
-                <Route path='/teacher/student/compare' component={TeaStuCompare} />
-                <Route path='/course/data' component={CourseData} />
-                <Route path='/lesson/data' component={LessonData} />
-                <Route path='/selected/subjects' component={SelectedSubjects} />
-                <Route path='/curriculumn' component={Curriculumn} />
-                <Route path='/basic/info' component={BasicInfo} />
-                <Route path='/add/more' component={AddMore} />
+                <Route path='/report' component={Nav} />
+                <Route path='/report/edu/resource/distribution' component={EduResourceDis} />
+                <Route path='/report/teacher/student/compare' component={TeaStuCompare} />
+                <Route path='/report/course/data' component={CourseData} />
+                <Route path='/report/lesson/data' component={LessonData} />
+                <Route path='/report/selected/subjects' component={SelectedSubjects} />
+                <Route path='/report/curriculumn' component={Curriculumn} />
+                <Route path='/report/basic/info' component={BasicInfo} />
+                <Route path='/report/add/more' component={AddMore} />
             </div>
         );
     }

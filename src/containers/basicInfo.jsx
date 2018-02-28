@@ -1,5 +1,4 @@
 import React from 'react';
-import Nav from '../commonComponents/nav';
 
 export default class BasicInfo extends React.Component {
     constructor(props) {
@@ -12,8 +11,7 @@ export default class BasicInfo extends React.Component {
     render() {
         var { location } = this.props;
         return (
-            <div style={{height: '100vh', backgroundColor: '#101b66'}}>
-                <Nav location={location} />
+            <div className='report' >
                 <h1>BasicInfo</h1>
             </div>
         )

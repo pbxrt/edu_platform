@@ -35,7 +35,7 @@ class Home extends React.Component {
                 <div className='cards' style={{width: 1234, height: 400, display: 'flex', margin: '0 auto', flexFlow: 'row wrap', justifyContent: 'space-between', alignItems: 'space-between'}} >
                     {
                         _.map(cards, link => (
-                            <div key={link.route} style={{width: 294, height: 191, marginBottom: 18, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', borderTopLeftRadius: 16, borderTopRightRadius: 16}}>
+                            <div key={link.route} style={{width: 294, height: 191, marginBottom: 18, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', borderTopLeftRadius: 10, borderTopRightRadius: 10}}>
                                 <Link to={link.route} style={{color: '#FFF', marginBottom: 10, textDecoration: 'none', fontSize: 14}} >{link.label}</Link>
                             </div>
                         ))
