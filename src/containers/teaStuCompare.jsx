@@ -17,6 +17,7 @@ export default class TeaStuCompare extends React.Component {
 
     render() {
         var { location } = this.props;
+        console.log(location)
         var reportList = [{ id: '111', name: '2017~2018学年高一选科组合分析报告'}];
         return (
             <div className='report' >

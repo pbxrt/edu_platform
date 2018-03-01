@@ -29,7 +29,7 @@ class Home extends React.Component {
             <div className='home'>
                 <Header city={'宁德市'} logOut={this.logOut.bind(this)} />
                 <Search />
-                <div style={{width: 1230, display: 'flex', alignItems: 'center', height: 'calc(100% - 620px)', margin: '0 auto', paddingBottom: 30}} >
+                <div style={{width: 1230, display: 'flex', alignItems: 'center', height: '25%', margin: '0 auto'}} >
                     <Statis districts={13} papers={828374273} schools={168} />
                 </div>
                 <div className='cards' style={{width: 1234, height: 400, display: 'flex', margin: '0 auto', flexFlow: 'row wrap', justifyContent: 'space-between', alignItems: 'space-between'}} >

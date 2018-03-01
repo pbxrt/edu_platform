@@ -12,7 +12,7 @@ export default class LessonData extends React.Component {
         var { location } = this.props;
         return (
             <div className='report' >
-                <h1>LessonData</h1>
+                <h1>{location.pathname}</h1>
             </div>
         )
     }

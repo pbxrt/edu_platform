@@ -13,7 +13,7 @@ export default class ReportSelector extends React.Component {
     render() {
         return (
             <div style={{backgroundColor: colorsMap['B02']}} >
-                <div style={{width: 1230, height: 76, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >
+                <div style={{width: 1320, height: 60, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >
                     <span>{'<'}</span>
                     <span>{this.state.currentReport.name}</span>
                     <span>{'>'}</span>

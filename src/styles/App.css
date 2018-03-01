@@ -4,9 +4,31 @@
 }
 
 .report {
+    min-height: calc(100% - 88px);
+    overflow: auto;
     background-color: #101b66;
+    padding-bottom: 50px;
 }
 
 .section {
     padding: 40px 0 60px 0;
+}
+
+.select-option:hover {
+    background-color: #e6f2ff;
+}
+
+.select-option {
+    color: #fff;
+    padding-left: 20px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.tbody-tr {
+    background-color: #112578;
+}
+
+.tbody-tr:hover {
+    background-color: #123391;
 }

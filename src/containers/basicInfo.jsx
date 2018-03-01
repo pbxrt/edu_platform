@@ -12,7 +12,7 @@ export default class BasicInfo extends React.Component {
         var { location } = this.props;
         return (
             <div className='report' >
-                <h1>BasicInfo</h1>
+                <h1>{location.pathname}</h1>
             </div>
         )
     }

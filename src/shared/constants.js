@@ -5,7 +5,7 @@ export const links = [
     { route: '/report/course/data', label: '课程数据分析' },
     { route: '/report/lesson/data', label: '课时数据分析' },
     { route: '/report/selected/subjects', label: '选科组合分析' },
-    { route: '/report/curriculumn', label: '课表查询' },
+    { route: '/report/table', label: '课表查询' },
     { route: '/report/basic/info', label: '基础信息查询' },
     { route: '/report/add/more', label: '添加更多' }
 ];
@@ -15,5 +15,12 @@ export const colorsMap = {
     B02: '#112B84',
     B03: '#101B66',
     B04: '#12379A',
-    T01: '#82a1d5'
+    B05: '#6077AF',
+    T01: '#82a1d5',
+    T02: '#586DA7',
+    C01: '#123391',
+    C02: '#112578',
+    C03: '#122F8A',
+    C04: '#133DA4',
+
 }

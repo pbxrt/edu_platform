@@ -12,6 +12,16 @@
     font-family: 'Aldrich', sans-serif;
 }
 
+.home i.magnifier {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 18px;
+    top: 12px;
+    background: url(../images/magnifier.png) no-repeat center center;
+    background-size: contain;
+}
+
 .home>.cards>div {
     background-size: contain;
 }
@@ -46,11 +56,4 @@
 
 .home>.cards>div:nth-child(8) {
     background: url(../images/8.png) no-repeat center center;
-}
-
-.yx-logo {
-    width: 163px;
-    height: 51px;
-    background: url(../images/yx_logo.png) no-repeat center center;
-    background-size: contain;
 }

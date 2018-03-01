@@ -5,7 +5,7 @@ import Nav from './containers/nav';
 import EduResourceDis from './containers/eduResourceDis';
 import AddMore from './containers/addMore';
 import CourseData from './containers/courseData';
-import Curriculumn from './containers/curriculumn';
+import LessonTable from './containers/lessonTable';
 import LessonData from './containers/lessonData';
 import SelectedSubjects from './containers/selectedSubjects';
 import TeaStuCompare from './containers/teaStuCompare';
@@ -23,7 +23,7 @@ class App extends Component {
                 <Route path='/report/course/data' component={CourseData} />
                 <Route path='/report/lesson/data' component={LessonData} />
                 <Route path='/report/selected/subjects' component={SelectedSubjects} />
-                <Route path='/report/curriculumn' component={Curriculumn} />
+                <Route path='/report/table' component={LessonTable} />
                 <Route path='/report/basic/info' component={BasicInfo} />
                 <Route path='/report/add/more' component={AddMore} />
             </div>

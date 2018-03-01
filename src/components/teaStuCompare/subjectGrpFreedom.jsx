@@ -11,7 +11,7 @@ export default class SubjectGrpFreedom extends React.Component {
     render() {
         return (
             <div className='section' >
-                <div style={{ width: 1230, paddingLeft: 165, margin: '0 auto' }} >
+                <div style={{ width: 1320, paddingLeft: 165, margin: '0 auto' }} >
                     <div style={{ height: 400, backgroundColor: '#ccc' }} ></div>
                 </div>
             </div>

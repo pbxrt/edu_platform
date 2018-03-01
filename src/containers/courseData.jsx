@@ -7,12 +7,12 @@ export default class CourseData extends React.Component {
 
         }
     }
-
+    
     render() {
         var { location } = this.props;
         return (
             <div className='report' >
-                <h1>CourseData</h1>
+                <h1>{location.pathnames}</h1>
             </div>
         )
     }
