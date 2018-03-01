@@ -37,10 +37,10 @@ export default class Header extends React.Component {
     constructor(props) {
         super(props);
         this.options = [
-            { value: 'one', label: 'one' },
-            { value: 'two', label: 'two' },
-            { value: 'three', label: 'three' },
-            { value: 'four', label: 'four' }
+            { value: '2017-2018学年上学期', label: '2017-2018学年上学期' },
+            { value: '2017-2018学年上学期1', label: '2017-2018学年上学期1' },
+            { value: '2017-2018学年上学期2', label: '2017-2018学年上学期2' },
+            { value: '2017-2018学年上学期3', label: '2017-2018学年上学期3' }
         ];
         this.state = {
             searchText: '',
@@ -60,13 +60,6 @@ export default class Header extends React.Component {
     }
 
     render() {
-        setInterval(() => {
-            var outer = document.getElementsByClassName('Select-menu-outer')[0];
-            if(outer) {
-
-                console.log(outer.innerHTML)
-            }
-        }, 1000)
         const { city } = this.props;
         return (
             <header style={{ width: 1155, height: 110, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >

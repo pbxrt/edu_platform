@@ -22,7 +22,7 @@ export default class Paginator extends React.Component {
                 pageRangeDisplayed={5}
                 onPageChange={this.props.handlePageClick.bind(this)}
                 containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
+                subContainerCla ssName={"pages pagination"}
                 activeClassName={"active"}
             />
         )
