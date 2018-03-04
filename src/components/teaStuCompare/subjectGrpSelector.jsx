@@ -25,11 +25,11 @@ export default class SubjectGrpSelector extends React.Component {
 
     render() {
         return (
-            <div style={{ width: 136, borderRadius: 2, position: 'fixed', left: 'calc(50% - 660px)', top: 300 }} >
+            <div style={{ width: 136, borderRadius: 2, position: 'fixed', left: 'calc(50% - 660px)', top: 300, backgroundColor: '#1335a9' }} >
                 {
                     _.map(this.state.subjectGrps, subjectGrp => {
                         var isActive = subjectGrp.id===this.state.currentSubjectGrp.id;
-                        var bgColor = isActive ? colorsMap['B02'] : colorsMap['B04'];
+                        var bgColor = isActive ? '#0c4dbc' : 'transparent';
                         var borderRadius = isActive ? 2 : 0;
                         var color = isActive ? '#FFF' : colorsMap['T01'];
                         return (

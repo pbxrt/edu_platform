@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import TableView from '../commonComponents/tableView';
 import Header from '../components/lessonTable/header';
@@ -23,6 +24,7 @@ export default class LessonTable extends React.Component {
 
     render() {
         var { location } = this.props;
+        console.log(location)
         var tableHeader = makeTableInfo();
         var tableData = makeTableData();
         const city = '宁德市';
@@ -41,6 +43,8 @@ export default class LessonTable extends React.Component {
 }
 
 function makeTableInfo() {
+    const headerStyle = { padding: '20px 14px 10px 28px', borderStyle: 'solid', borderColor: `${colorsMap.C04} ${colorsMap.B03}`,  backgroundColor: colorsMap['C01'], fontSize: 14, borderWidth: '1px 2px'};
+    const columnStyle = Object.assign({}, headerStyle, { padding:'14px 14px 14px 28px', backgroundColor: colorsMap['C02']});
     const mainHeader = [
         { id: 'school', name: '学校' },
         { id: 'school_table', name: '全校课表' },
@@ -49,6 +53,10 @@ function makeTableInfo() {
         { id: 'student_table', name: '学生课表' },
         { id: 'class_room_table', name: '教室课表' }
     ];
+    _.each(mainHeader, headerCell => {
+        headerCell.style = headerStyle;
+        headerCell.columnStyle = columnStyle;
+    });
     return [mainHeader];
 }
 

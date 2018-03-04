@@ -25,10 +25,23 @@
     line-height: 40px;
 }
 
-.tbody-tr {
-    background-color: #112578;
+.section-title {
+    font-size: 16px;
 }
 
-.tbody-tr:hover {
-    background-color: #123391;
+.section-desc {
+    font-size: 14px;
+    color: #b4c1e0;
+}
+
+input[use-for="search-lesson-table"]::-webkit-input-placeholder {
+    color: #FFF;
+}
+
+input[use-for="search-basic-info"]::-webkit-input-placeholder {
+    color: #8f8f8f;
+}
+
+input[use-for="select"]::-webkit-input-placeholder {
+    color: #7d7d7d;
 }

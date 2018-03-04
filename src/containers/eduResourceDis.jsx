@@ -1,5 +1,11 @@
 import React from 'react';
 
+import TotalStatis from '../components/eduResourceDis/totalStatis';
+import AreaStatis from '../components/eduResourceDis/areaStatis';
+import GenderCompare from '../components/eduResourceDis/genderCompare';
+import AreaDetail from '../components/eduResourceDis/areaDetail';
+import SchoolDetail from '../components/eduResourceDis/schoolDetail';
+
 export default class EduResourceDis extends React.Component {
     constructor(props) {
         super(props);
@@ -9,10 +15,13 @@ export default class EduResourceDis extends React.Component {
     }
 
     render() {
-        var { location } = this.props;
         return (
             <div className='report' >
-                <h1>{location.pathname}</h1>
+                <TotalStatis />
+                <AreaStatis />
+                <GenderCompare />
+                <AreaDetail />
+                <SchoolDetail />
             </div>
         )
     }

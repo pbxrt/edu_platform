@@ -3,6 +3,7 @@ import React from 'react';
 import { colorsMap } from '../shared/constants';
 import classNames from 'classnames';
 import { downloadData } from '../lib/util';
+import download_icon from '../images/download.png';
 /**
  * props:
  * tableData: 需要在table里渲染的全部数据,
@@ -69,7 +70,7 @@ class TableComponent extends React.Component{
         var {tableHeader, tableData, showData, cancelTableSort, sortDir, sortKey, widthStyle} = this.props
         var headSeq = [];
         return (
-            <table style={_.assign({}, {border: '1px solid #ccc', borderCollapse: 'collapse'}, widthStyle ? widthStyle : {})}>
+            <table style={_.assign({}, { borderCollapse: 'collapse'}, widthStyle ? widthStyle : {})}>
                 <thead>
                 {
                     _.map(tableHeader, (headerList, trindex) => {
@@ -90,7 +91,7 @@ class TableComponent extends React.Component{
                                             <th key={'thead-th-' + thindex}
                                                 rowSpan={header.rowSpan ? header.rowSpan : 1}
                                                 colSpan={header.colSpan ? header.colSpan : 1}
-                                                style={_.assign({}, header.height ? {height: header.height} : {}, { padding: '20px 14px 10px 28px', borderWidth: '1px 2px', borderStyle: 'solid', borderColor: `${colorsMap.C04} ${colorsMap.B03}`, backgroundColor: colorsMap['C01'], position: 'relative', whiteSpace: 'nowrap', fontSize: 14, fontWeight: 'bold'})}
+                                                style={_.assign({}, { position: 'relative', whiteSpace: 'nowrap' }, header.style ? header.style : {})}
                                                 onClick={cancelTableSort || header.cancelColumnSort ? this.emptyFn : this.handleSort.bind(this, header.id)}
                                                 >
                                                 <span style={header.tipContent !== undefined ? {marginRight: 5} : {}}>{header.name}</span>
@@ -132,7 +133,7 @@ class TableComponent extends React.Component{
                                             <td key={'tbody-td-' + tdindex}
                                                 colSpan={rowData[id] && rowData[id].colSpan ? rowData[id].colSpan : 1}
                                                 rowSpan={rowData[id] && rowData[id].rowSpan ? rowData[id].rowSpan : 1}
-                                                style={_.assign({}, tdStyle, {padding:'14px 14px 14px 28px', borderWidth: '1px 2px', borderStyle: 'solid', borderColor: `${colorsMap.C04} ${colorsMap.B03}`, whiteSpace: 'nowrap', fontSize: 14,}, _.isObject(rowData[id]) ? {cursor: 'pointer'} : {})}
+                                                style={_.assign({}, tdStyle, { whiteSpace: 'nowrap'}, _.isObject(rowData[id]) ? {cursor: 'pointer'} : {})}
                                                 onClick={(_.isObject(rowData[id]) && !rowData[id].props) ? this.handleOnClick.bind(this, id, rowData) : this.emptyFn()}
                                                 >
                                                 {tdData}
@@ -217,12 +218,13 @@ class TableViewComponent extends React.Component {
                 <div style={{position: 'relative'}}>
                     {
                         !cancelDownload &&
-                        <div style={{position:'absolute', top:-50, right:0, width: 80, height: 34, lineHeight:'34px', background: colorsMap.B03, color: '#fff', borderRadius: 3, cursor: 'pointer', paddingLeft: 10}}
+                        <div style={{ position:'absolute', top:-50, right:0, display: 'flex', alignItems: 'center', color: '#fff', cursor: 'pointer'}}
                             onClick={this.downloadTable.bind(this)}>
-                            下载表格
+                            <img style={{ width: 19, height: 18 }} src={download_icon} alt={'download_icon'} />
+                            <span style={{ marginLeft: 10}} >下载表格</span>
                         </div>
                     }
-                    <div style={{display: 'flex'}}>
+                    <div style={_.assign({}, this.props.tableStyle ? this.props.tableStyle : {}, {display: 'flex'})}>
                         {
                             _.isEmpty(leftFrozenHeader) ? '' : <TableComponent {...tableViewProps} tableHeader={leftFrozenHeader}/>
                         }
