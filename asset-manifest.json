@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.2ddadcc2.css",
-  "main.css.map": "static/css/main.2ddadcc2.css.map",
-  "main.js": "static/js/main.9339d2aa.js",
-  "main.js.map": "static/js/main.9339d2aa.js.map",
+  "main.css": "static/css/main.fb1de57d.css",
+  "main.css.map": "static/css/main.fb1de57d.css.map",
+  "main.js": "static/js/main.c75164f6.js",
+  "main.js.map": "static/js/main.c75164f6.js.map",
   "static/media/1.png": "static/media/1.364539b1.png",
   "static/media/2.png": "static/media/2.db272d50.png",
   "static/media/3.png": "static/media/3.eaa5f6a5.png",
@@ -16,5 +16,6 @@
   "static/media/Aldrich-Regular.ttf": "static/media/Aldrich-Regular.8e319a5f.ttf",
   "static/media/Aldrich-Regular.woff": "static/media/Aldrich-Regular.33b0bcc0.woff",
   "static/media/Aldrich-Regular.woff2": "static/media/Aldrich-Regular.f2ba1dee.woff2",
-  "static/media/back.png": "static/media/back.6dcbcbc7.png"
+  "static/media/back.png": "static/media/back.6dcbcbc7.png",
+  "static/media/search.png": "static/media/search.fadf1fb9.png"
 }
