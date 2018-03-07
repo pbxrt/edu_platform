@@ -11,7 +11,10 @@
 }
 
 .section {
-    padding: 40px 0 60px 0;
+    padding-top: 40px;
+    padding-right: calc(50% - 660px);
+    padding-bottom: 40px;
+    padding-left: calc(50% - 495px);
 }
 
 .select-option:hover {
@@ -44,4 +47,104 @@ input[use-for="search-basic-info"]::-webkit-input-placeholder {
 
 input[use-for="select"]::-webkit-input-placeholder {
     color: #7d7d7d;
+}
+
+@keyframes pulsate {
+    0% {
+        width: 8px;
+        height: 8px;
+        opacity: 1;
+    }
+    100% {
+        width: 30px;
+        height: 30px;
+        opacity: 0;
+    }
+}
+
+.map-target {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.map-target:before, .map-target:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.map-target:before {
+  animation: pulsate 2s infinite;
+}
+
+.map-target:after {
+  animation: pulsate 2s 0.6s infinite;
+}
+
+@keyframes floating {
+  50% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.float-bubble {
+  animation: floating 3s ease infinite;
+}
+
+.float-bubble:nth-child(2) {
+  animation: floating 3s 1s ease infinite;
+}
+
+.float-bubble:nth-child(3) {
+  animation: floating 3s 0.5s ease infinite;
+}
+
+.float-bubble:nth-child(4) {
+  animation: floating 3s ease infinite;
+}
+
+.float-bubble:nth-child(5) {
+  animation: floating 3s 0.5s ease infinite;
+}
+
+.float-bubble:nth-child(6) {
+  animation: floating 3s 1s ease infinite;
+}
+
+@keyframes empty-floating {
+  0% {
+    transform: translateY(0px)
+  }
+  100% {
+    transform: translateY(-600px);
+  }
+}
+
+.empty-bubble:nth-child(7) {
+  animation: empty-floating 10s 2s ease infinite;
+}
+
+.empty-bubble:nth-child(8) {
+  animation: empty-floating 9s 1s ease infinite;
+}
+
+.empty-bubble:nth-child(9) {
+  animation: empty-floating 11s 0.3s ease infinite;
+}
+
+.empty-bubble:nth-child(10) {
+  animation: empty-floating 8s 5s ease infinite;
+}
+
+.empty-bubble:nth-child(11) {
+  animation: empty-floating 12s 12s ease infinite;
 }

@@ -46,25 +46,23 @@ export default class SubjectGrpFreedom extends React.Component {
         var  tableData = makeTableData();
         return (
             <div className='section' >
-                <div style={{ width: 1320, paddingLeft: 165, margin: '0 auto' }} >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 30}} >
-                        <div>
-                            <span className='section-title'>各校选科组合数对比：</span>
-                            <span className='section-desc'>“7选3”下35种组合，“6选3”下20种组合，学校组合数越多，学生选科自由度越高</span>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={this.handleDownload.bind(this, tableHeader, tableData, tableName)}>
-                            <img style={{ width: 19, height: 18 }} src={download_icon} alt={'download_icon'} />
-                            <span style={{ marginLeft: 10}} >下载表格</span>
-                        </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 30}} >
+                    <div>
+                        <span className='section-title'>各校选科组合数对比：</span>
+                        <span className='section-desc'>“7选3”下35种组合，“6选3”下20种组合，学校组合数越多，学生选科自由度越高</span>
                     </div>
-                    <div style={{ padding: '20px 40px', backgroundColor: colorsMap['B06'], display: 'flex' }} >
-                        <div style={{ width: 537 }} >
-                            <TableView tableHeader={tableHeader} tableName={tableName} tableData={tableData.slice(0, 8)} reserveRows cancelTableSort cancelDownload />
-                        </div>
-                        <div style={{ width: 1, backgroundColor: colorsMap['B07'] }} ></div>
-                        <div style={{ width: 537 }} >
-                            <TableView tableHeader={tableHeader} tableName={tableName} tableData={tableData.slice(8)} reserveRows cancelTableSort cancelDownload />
-                        </div>
+                    <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={this.handleDownload.bind(this, tableHeader, tableData, tableName)}>
+                        <img style={{ width: 19, height: 18 }} src={download_icon} alt={'download_icon'} />
+                        <span style={{ marginLeft: 10}} >下载表格</span>
+                    </div>
+                </div>
+                <div style={{ padding: '20px 40px', backgroundColor: colorsMap['B06'], display: 'flex' }} >
+                    <div style={{ width: 537 }} >
+                        <TableView tableHeader={tableHeader} tableName={tableName} tableData={tableData.slice(0, 8)} reserveRows cancelTableSort cancelDownload />
+                    </div>
+                    <div style={{ width: 1, backgroundColor: colorsMap['B07'] }} ></div>
+                    <div style={{ width: 537 }} >
+                        <TableView tableHeader={tableHeader} tableName={tableName} tableData={tableData.slice(8)} reserveRows cancelTableSort cancelDownload />
                     </div>
                 </div>
             </div>

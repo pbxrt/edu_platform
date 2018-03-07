@@ -8,7 +8,7 @@ export default class Header extends React.Component {
     constructor(props) {
         super(props);
         this.options = [
-            { value: '2017-2018学年上学期', label: '2017-2018学年上学期2018学年上学期2018学年上学期2018学年上学期2018学年上学期2018学年上学期' },
+            { value: '2017-2018学年上学期', label: '2017-2018学年上学期' },
             { value: '2017-2018学年上学期1', label: '2017-2018学年上学期1' },
             { value: '2017-2018学年上学期2', label: '2017-2018学年上学期2' },
             { value: '2017-2018学年上学期3', label: '2017-2018学年上学期3' }
@@ -36,7 +36,10 @@ export default class Header extends React.Component {
                         useFor='search-lesson-table'
                         handleSearch={this.handleSearch.bind(this)}
                         placeholder={'搜索：学校'}
-                        style={{ width: 208, height: 32, paddingLeft: 14, border: `2px solid ${colorsMap['T02']}`, borderRadius: 3, color: '#FFF', backgroundColor: colorsMap['B03'] }}
+                        color={'#fff'}
+                        width={260}
+                        border={'1px solid #888db3'}
+                        backgroundColor={'transparent'}
                     />
                 </div>
                 

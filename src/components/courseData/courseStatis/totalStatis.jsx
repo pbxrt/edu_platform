@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ChineseMap from '../../commonComponents/chineseMap';
-import Select from '../../commonComponents/select';
+import ChineseMap from '../../../commonComponents/chineseMap';
+import Select from '../../../commonComponents/select';
 
 const mockData = [
     { name: '区县', count: 15, radius: 42, color: 'rgba(254, 218, 0, 0.8)', left: 30, top: 275 },

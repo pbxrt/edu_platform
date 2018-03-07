@@ -15,7 +15,7 @@ export default class ToggleDimension extends React.Component {
 
     render() {
         return (
-            <div style={{ display: 'flex', alignItems: 'center', marginLeft: 15 }} >
+            <div style={{ display: 'flex', alignItems: 'center' }} >
                 { this.props.options.map((option, index) => (
                     <span
                         key={option.value}

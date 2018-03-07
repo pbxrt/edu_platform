@@ -1,5 +1,6 @@
 import React from 'react';
 import arrow from '../images/arrow_down.png';
+import { colorsMap } from '../shared/constants';
 
 export default class Select extends React.Component {
     constructor(props) {
@@ -7,12 +8,8 @@ export default class Select extends React.Component {
         this.options = this.props.options
         this.state = {
             isFocused: false,
-            value: ''
+            value: this.options[0]
         }
-    }
-
-    handleChange(event) {
-        this.setState({ value: event.nativeEvent.target.value })
     }
 
     handleFocus() {
@@ -24,22 +21,42 @@ export default class Select extends React.Component {
     }
 
     handleSelect(option) {
-        this.setState({ value: option.label })
+        this.setState({ value: option })
         this.props.handleSelect(option)
     }
 
     render() {
         return (
-            <div style={Object.assign({}, this.props.inputStyle, { border: 'none', position: 'relative', padding: 0})} >
-                <input use-for='select' style={Object.assign({}, this.props.inputStyle, { outline: 'none', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', paddingRight: 20 })} placeholder={this.props.placeholder} type='text' value={this.state.value} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} />
-                <img src={arrow} alt='search_icon' style={{ position: 'absolute', top: '50%', right: 10, transform: `translateY(-50%) rotate(${this.state.isFocused ? 180 : 0}deg)`, width: 17, height: 9}}  />
+            <div style={{ position: 'relative', verticalAlign: 'middle', textAlign: 'left' }} >
+                <input use-for='select'
+                    style={{
+                        height: 32,
+                        paddingLeft: 10,
+                        backgroundColor: colorsMap['B03'],
+                        border: `2px solid ${colorsMap['T02']}`,
+                        borderRadius: 3,
+                        outline: 'none',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        paddingRight: 20,
+                        width: this.props.width || 196
+                    }}
+                    placeholder={this.props.placeholder}
+                    type='text'
+                    value={this.state.value.label}
+                    onFocus={this.handleFocus.bind(this)}
+                    onBlur={this.handleBlur.bind(this)}
+                    readOnly
+                />
+                <img src={arrow} alt='search_icon' style={{ position: 'absolute', left: this.props.width ? this.props.width-30 : 166, top: 10, transform: `rotate(${this.state.isFocused ? 180 : 0}deg)`, width: 17, height: 9}}  />
                 { this.state.isFocused && (
-                    <div style={Object.assign({}, this.props.dropDownStyle, { position: 'absolute', zIndex: 10, width: '100%', height: 200, overflow: 'auto' })} >
+                    <div style={{ backgroundColor: colorsMap['B03'], border: `1px solid ${colorsMap['T02']}`, position: 'absolute', zIndex: 10, width: this.props.width || 196 , height: 200, overflow: 'auto' }} >
                         {this.options.map(list => (
                             <div key={list.value}
                                 className={this.props.itemClassName}
                                 onMouseDown={this.handleSelect.bind(this, list)}
-                                style={Object.assign({}, this.props.itemStyle, { cursor: 'pointer', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' })}>
+                                style={{ color: '#fff', padding: '5px 0 5px 10px', cursor: 'pointer', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                 {list.label}
                             </div>
                         ))}

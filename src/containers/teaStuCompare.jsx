@@ -1,11 +1,22 @@
 import React from 'react';
 
-import ReportSelector from '../components/teaStuCompare/reportSelector';
-import SubjectGrpCount from '../components/teaStuCompare/subjectGrpCount';
-import SubjectGrpCompare from '../components/teaStuCompare/subjectGrpCompare';
-import SubjectGrpFreedom from '../components/teaStuCompare/subjectGrpFreedom';
-import SubjectGrpDetail from '../components/teaStuCompare/subjectGrpDetail';
-import SubjectGrpSelector from '../components/teaStuCompare/subjectGrpSelector';
+import CityCompare from '../components/teaStuCompare/cityCompare';
+import DistrictCompare from '../components/teaStuCompare/districtCompare';
+import SchoolCompare from '../components/teaStuCompare/schoolCompare';
+
+const periodOptions = [
+    { value: '2017-2018学年上学期', label: '2017-2018学年上学期' },
+    { value: '2017-2018学年上学期1', label: '2017-2018学年上学期1' },
+    { value: '2017-2018学年上学期2', label: '2017-2018学年上学期2' },
+    { value: '2017-2018学年上学期3', label: '2017-2018学年上学期3' }
+];
+
+const gradeOptions = [
+    { value: '高一', label: '高一' },
+    { value: '高二', label: '高二' },
+    { value: '初一', label: '初一' },
+    { value: '高三', label: '高三' }
+]
 
 export default class TeaStuCompare extends React.Component {
     constructor(props) {
@@ -16,17 +27,11 @@ export default class TeaStuCompare extends React.Component {
     }
 
     render() {
-        var { location } = this.props;
-        console.log(location)
-        var reportList = [{ id: '111', name: '2017~2018学年高一选科组合分析报告'}];
         return (
             <div className='report' >
-                <SubjectGrpSelector />
-                <ReportSelector reportList={reportList} />
-                <SubjectGrpCount />
-                <SubjectGrpCompare />
-                <SubjectGrpFreedom />
-                <SubjectGrpDetail />
+                <CityCompare periodOptions={periodOptions} gradeOptions={gradeOptions} city={'宁德市'} />
+                <DistrictCompare />
+                <SchoolCompare />
             </div>
         )
     }

@@ -12,17 +12,18 @@
     font-family: 'Aldrich', sans-serif;
 }
 
-.home i.magnifier {
+.home i.search {
     position: absolute;
     width: 18px;
     height: 18px;
     left: 18px;
     top: 12px;
-    background: url(../images/magnifier.png) no-repeat center center;
+    background: url(../images/search.png) no-repeat center center;
     background-size: contain;
 }
 
 .home>.cards>div {
+    cursor: pointer;
     background-size: contain;
 }
 

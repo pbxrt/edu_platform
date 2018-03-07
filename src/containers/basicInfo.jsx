@@ -4,6 +4,7 @@ import _ from 'lodash';
 import Search from '../commonComponents/search';
 import ToggleDimension from '../components/basicInfo/toggleDimension';
 import TableView from '../commonComponents/tableView';
+import Paginator from '../commonComponents/paginator'
 
 const dimensions = [
     { value: '区县', label: '区县' },
@@ -28,27 +29,34 @@ export default class BasicInfo extends React.Component {
         console.log(option)
     }
 
+    handlePageClick(page) {
+        console.log(page)
+    }
+
     render() {
         const city = '宁德市'
         const { tableHeader, tableName } = makeTableInfo()
         const tableData = makeTableData()
         return (
             <div className='report' >
-                <p style={{ fontSize: 24, color: '#fff', margin: 0, padding: '40px 0 55px 0', textAlign: 'center' }} >{city}基础信息查询</p>
+                <div style={{ textAlign: 'center' }} >
+                    <p style={{ fontSize: 24, color: '#fff', margin: 0, padding: '40px 0 25px 0',  }} >{city}基础信息查询</p>
+                    <Search
+                        useFor='search-basic-info'
+                        handleSearch={this.handleSearch.bind(this)}
+                        placeholder={'输入区县、学校、教师进行搜索'}
+                        width={288}
+                    />
+                </div>
                 <div style={{ width: 1155, margin: '0 auto' }} >
-                    <div style={{ display: 'flex' }}>
-                        <Search
-                            useFor='search-basic-info'
-                            handleSearch={this.handleSearch.bind(this)}
-                            placeholder={'输入区县、学校、教师进行搜索'}
-                            style={{ width: 288, height: 32, paddingLeft: 14, border: 'none', outline: 'none', borderRadius: 16, color: '#000', backgroundColor: '#fff' }}
-                        />
+                    <div style={{ marginTop: 44}} >
                         <ToggleDimension handleClick={this.handleChangeDimension.bind(this)} options={dimensions} />
                     </div>
                     <div style={{ marginTop: 25 }} >
                         <TableView tableHeader={tableHeader} tableName={tableName} downloadkeys={tableHeader[0]} tableData={tableData} cancelTableSort reserveRows />
                     </div>
                 </div>
+                <Paginator pageCount={15} handlePageClick={this.handlePageClick.bind(this)} />
             </div>
         )
     }
@@ -67,8 +75,8 @@ function makeTableInfo() {
         { id: 'paper_count', name: '上传试卷总数' }
     ];
     _.each(mainHeader, cell => {
-        cell.style = { padding: '16px 0 16px 35px', backgroundColor: '#123391', fontSize: 14 };
-        cell.columnStyle = _.assign({}, cell.style, { padding: '10px 0 12px 35px', backgroundColor: '#112578', borderTop: `1px solid #112391` })
+        cell.style = { padding: '13px 0 12px 35px', backgroundColor: '#123391', fontSize: 14 };
+        cell.columnStyle = _.assign({}, cell.style, { padding: '7px 0 9px 35px', backgroundColor: '#112578', borderTop: `1px solid #112391` })
     });
     const tableName = '基础信息';
     return { tableHeader: [mainHeader], tableName };

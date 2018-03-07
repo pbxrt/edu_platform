@@ -34,17 +34,15 @@ export default class LessonTable extends React.Component {
                 <div style={{ width: 1155, margin: '0 auto' }} >
                     <TableView tableHeader={tableHeader} tableData={tableData} handleOnClick={this.handleClickTable.bind(this)} reserveRows cancelTableSort cancelDownload />
                 </div>
-                <div style={{ width: 400, margin: '0 auto' }} >
-                    <Paginator pageCount={15} handlePageClick={this.handlePageClick.bind(this)} />
-                </div>
+                <Paginator pageCount={15} handlePageClick={this.handlePageClick.bind(this)} />
             </div>
         )
     }
 }
 
 function makeTableInfo() {
-    const headerStyle = { padding: '20px 14px 10px 28px', borderStyle: 'solid', borderColor: `${colorsMap.C04} ${colorsMap.B03}`,  backgroundColor: colorsMap['C01'], fontSize: 14, borderWidth: '1px 2px'};
-    const columnStyle = Object.assign({}, headerStyle, { padding:'14px 14px 14px 28px', backgroundColor: colorsMap['C02']});
+    const headerStyle = { padding: '18px 14px 8px 28px', borderStyle: 'solid', borderColor: `${colorsMap.C04} ${colorsMap.B03}`,  backgroundColor: colorsMap['C01'], fontSize: 14, borderWidth: '1px 2px'};
+    const columnStyle = Object.assign({}, headerStyle, { padding:'12px 14px 11px 28px', backgroundColor: colorsMap['C02']});
     const mainHeader = [
         { id: 'school', name: '学校' },
         { id: 'school_table', name: '全校课表' },

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "d3": "^4.13.0",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-bootstrap": "0.29.3",

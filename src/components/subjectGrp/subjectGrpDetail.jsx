@@ -41,11 +41,9 @@ export default class SubjectGrpDetail extends React.Component {
         let tableData = makeTableData(mockData);
         return (
             <div className='section' style={{backgroundColor: colorsMap['B02']}} >
-                <div style={{ width: 1320, paddingLeft: 165, margin: '0 auto' }} >
-                    <div className='section-title'>各校选科组合数对比：</div>
-                    <div style={{ paddingTop: 30}} >
-                        <TableView tableStyle={{ borderStyle: 'solid', borderWidth: '10px 0 10px 0', borderColor: `${colorsMap['B08']} transparent #113291 transparent`}} tableHeader={tableHeader} tableName={tableName} downloadkeys={downloadkeys} tableData={tableData} reserveRows cancelTableSort />
-                    </div>
+                <div className='section-title'>各校选科组合数对比：</div>
+                <div style={{ paddingTop: 30}} >
+                    <TableView tableStyle={{ borderStyle: 'solid', borderWidth: '10px 0 10px 0', borderColor: `${colorsMap['B08']} transparent #113291 transparent`}} tableHeader={tableHeader} tableName={tableName} downloadkeys={downloadkeys} tableData={tableData} reserveRows cancelTableSort />
                 </div>
             </div>
         )

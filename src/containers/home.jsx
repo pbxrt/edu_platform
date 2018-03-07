@@ -20,8 +20,12 @@ class Home extends React.Component {
         console.log('logOut')
     }
 
-    onTest() {
-        this.props.history.push('/course/data')
+    goTo(link) {
+        if(link.label === '添加更多') {
+            alert('添加更多')
+        } else {
+            this.props.history.push(link.route)
+        }
     }
 
     render() {
@@ -35,7 +39,7 @@ class Home extends React.Component {
                 <div className='cards' style={{width: 1234, height: 400, display: 'flex', margin: '0 auto', flexFlow: 'row wrap', justifyContent: 'space-between', alignItems: 'space-between'}} >
                     {
                         _.map(cards, link => (
-                            <div key={link.route} style={{width: 294, height: 191, marginBottom: 18, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', borderTopLeftRadius: 10, borderTopRightRadius: 10}}>
+                            <div key={link.route} onClick={this.goTo.bind(this, link)} style={{width: 294, height: 191, marginBottom: 18, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', borderTopLeftRadius: 10, borderTopRightRadius: 10}}>
                                 <Link to={link.route} style={{color: '#FFF', marginBottom: 10, textDecoration: 'none', fontSize: 14}} >{link.label}</Link>
                             </div>
                         ))
