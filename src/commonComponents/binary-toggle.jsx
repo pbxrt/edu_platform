@@ -10,6 +10,7 @@ export default class BiToggler extends React.Component {
 
     handleToggle(option) {
         this.setState({ option })
+        this.props.handleToggle(option)
     }
 
     render() {

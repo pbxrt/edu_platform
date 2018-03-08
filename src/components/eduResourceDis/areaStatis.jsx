@@ -13,11 +13,11 @@ export default class AreaStatis extends React.Component {
     }
 
     render() {
-        const config = makeConfig()
+        const option = makeOption()
         return (
             <div className='section' style={{backgroundColor: colorsMap['B02']}} >
                 <EchartsForReact
-                    option={config}
+                    option={option}
                     style={{ width: '100%', height: 360, position: 'relative' }}
                 />
             </div>
@@ -25,8 +25,8 @@ export default class AreaStatis extends React.Component {
     }
 }
 
-function makeConfig() {
-    const barWidth = 36;
+function makeOption() {
+    const barWidth = 30;
     const barGap = 0;
     const color1 = new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
         { offset: 0, color: '#f9a815' },
@@ -108,7 +108,6 @@ function makeConfig() {
             {
                 name: '教师',
                 type: 'bar',
-                barBorderRadius: 10,
                 barGap,
                 barWidth,
                 data: [320, 332, 301, 334, 390],
@@ -128,6 +127,7 @@ function makeConfig() {
             {
                 name: '学生',
                 type: 'bar',
+                barGap,
                 barWidth,
                 data: [220, 182, 191, 234, 290],
                 itemStyle: {
@@ -146,6 +146,7 @@ function makeConfig() {
             {
                 name: '家长',
                 type: 'bar',
+                barGap,
                 barWidth,
                 data: [150, 232, 201, 154, 190],
                 itemStyle: {
