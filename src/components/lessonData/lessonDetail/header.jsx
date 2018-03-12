@@ -13,23 +13,6 @@ export default class Header extends React.Component {
         }
     }
 
-    handleSearch(text) {
-        console.log('search text : ', text)
-    }
-
-    selectSchool(school) {
-        console.log('school ===>', school)
-        this.props.selectSchool(school)
-    }
-
-    selectPeriod(period) {
-        this.setState({ period })
-    }
-
-    selectSubject(subject) {
-        this.setState({ subject })
-    }
-
     render() {
         return (
             <header style={{ padding: '0 0 26px 0', textAlign: 'center' }} >
@@ -37,7 +20,7 @@ export default class Header extends React.Component {
                     <div style={{ fontSize: 24, paddingBottom: 26 }} >{this.props.city}课时详细数据</div>
                     <Search
                         useFor='search-basic-info'
-                        handleSearch={this.handleSearch.bind(this)}
+                        handleSearch={this.props.handleSearch.bind(this)}
                         placeholder={'输入学校、老师搜索'}
                         width={260}
                     />
@@ -46,17 +29,17 @@ export default class Header extends React.Component {
                     <span style={{ fontSize: 14, paddingRight: 10 }} >选择学校</span>
                     <Select
                         options={this.props.schoolOptions}
-                        handleSelect={this.selectSchool.bind(this)}
+                        handleSelect={this.props.selectSchool.bind(this)}
                     />
                     <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', paddingRight: 10 }} >
                         <Select
                             options={this.props.periodOptions}
-                            handleSelect={this.selectPeriod.bind(this)}
+                            handleSelect={this.props.selectPeriod.bind(this)}
                         />
                     </div>
                     <Select
                         options={this.props.subjectOptions}
-                        handleSelect={this.selectSubject.bind(this)}
+                        handleSelect={this.props.selectSubject.bind(this)}
                     />
                 </div>
             </header>

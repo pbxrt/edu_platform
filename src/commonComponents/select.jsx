@@ -12,6 +12,16 @@ export default class Select extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(this.props.options !== nextProps.options) {
+            this.options = nextProps.options;
+            this.setState({
+                isFocused: false,
+                value: this.options[0]
+            })
+        }
+    }
+
     handleFocus() {
         this.setState({ isFocused: true })
     }
@@ -21,8 +31,10 @@ export default class Select extends React.Component {
     }
 
     handleSelect(option) {
-        this.setState({ value: option })
         this.props.handleSelect(option)
+        this.setState({
+            value: option
+        })
     }
 
     render() {

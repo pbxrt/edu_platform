@@ -5,20 +5,12 @@ import TableView from '../../../commonComponents/tableView';
 import { colorsMap } from '../../../shared/constants';
 
 export default class AreaDetail extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
     render() {
-        const mockData = makeMockData()
         const { tableHeader, tableName } = makeTableInfo();
-        const tableData = makeTableData(mockData);
+        const tableData = this.props.statis.courseDetail.schools;
         return (
             <div className='section' style={{backgroundColor: colorsMap['B02']}} >
-                <div className='section-title'>学校用户分布明细：</div>
+                <div className='section-title'>课程学校详细数据：</div>
                 <div style={{ paddingTop: 30}} >
                     <TableView tableHeader={tableHeader} tableName={tableName} downloadkeys={tableHeader[0]} tableData={tableData} reserveRows cancelTableSort />
                 </div>
@@ -29,12 +21,12 @@ export default class AreaDetail extends React.Component {
 
 function makeTableInfo() {
     let mainHeader = [
-        { id: 'school', name: '学校' },
-        { id: 'area', name: '区县' },
-        { id: 'user_count', name: '总用户数' },
-        { id: 'teacher', name: '教师' },
-        { id: 'student', name: '学生' },
-        { id: 'parent', name: '家长' }
+        { id: 'district', name: '区县' },
+        { id: 'name', name: '学校' },
+        { id: 'subjectCount', name: '学科数' },
+        { id: 'courseCount', name: '所有课程数' },
+        { id: 'required', name: '必修课' },
+        { id: 'elective', name: '自选课' }
     ];
     _.each(mainHeader, cell => {
         cell.style = { padding: '16px 0 16px 35px', backgroundColor: colorsMap['B08'], fontSize: 14 };
@@ -42,82 +34,4 @@ function makeTableInfo() {
     });
     const tableName = '区县用户分布明细';
     return { tableHeader: [mainHeader], tableName };
-}
-
-function makeTableData(mockData) {
-    let tableData = [];
-    _.each(mockData, (data, areaKey) => {
-        let row = _.pick(data, ['school', 'area', 'user_count', 'teacher', 'student', 'parent']);
-        (areaKey === 'all') ? tableData.unshift(row) : tableData.push(row)
-    });
-    return tableData;
-}
-
-function makeMockData() {
-    return {
-        all: {
-            school: '全部',
-            area: '全部',
-            user_count: 3000,
-            teacher: 1000,
-            student: 1000,
-            parent: 1000
-        },
-        area1: {
-            school: '学校1',
-            area: '区县1',
-            user_count: 3000,
-            teacher: 1000,
-            student: 1000,
-            parent: 1000  
-        },
-        area2: {
-            school: '学校2',
-            area: '区县2',
-            user_count: 3000,
-            teacher: 1000,
-            student: 1000,
-            parent: 1000  
-        },
-        area3: {
-            school: '学校3',
-            area: '区县3',
-            user_count: 3000,
-            teacher: 1000,
-            student: 1000,
-            parent: 1000  
-        },
-        area4: {
-            school: '学校4',
-            area: '区县4',
-            user_count: 3000,
-            teacher: 1000,
-            student: 1000,
-            parent: 1000  
-        },
-        area5: {
-            school: '学校5',
-            area: '区县5',
-            user_count: 3000,
-            teacher: 1000,
-            student: 1000,
-            parent: 1000  
-        },
-        area6: {
-            school: '学校6',
-            area: '区县6',
-            user_count: 3000,
-            teacher: 1000,
-            student: 1000,
-            parent: 1000  
-        },
-        area7: {
-            school: '学校7',
-            area: '区县7',
-            user_count: 3000,
-            teacher: 1000,
-            student: 1000,
-            parent: 1000  
-        }
-    }
 }

@@ -4,39 +4,51 @@ import _ from 'lodash';
 import Search from '../commonComponents/search';
 import ToggleDimension from '../components/basicInfo/toggleDimension';
 import TableView from '../commonComponents/tableView';
-import Paginator from '../commonComponents/paginator'
+import Paginator from '../commonComponents/paginator';
+import mockData from '../mockData/basicInfo.json';
 
 const dimensions = [
-    { value: '区县', label: '区县' },
-    { value: '学校', label: '学校' },
-    { value: '教师', label: '教师' },
-    { value: '学生', label: '学生' }
+    { value: '区县', label: '区县', dimension: 'districts' },
+    { value: '学校', label: '学校', dimension: 'schools' },
+    { value: '教师', label: '教师', dimension: 'teachers' },
+    { value: '学生', label: '学生', dimension: 'students' }
 ];
 
 export default class BasicInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            dimension: 'districts',
+            currentPage: 0,
+            searchText: ''
         }
     }
 
     handleSearch(text) {
-        console.log('search text is ', text)
+        let keyText = text.trim();
+        this.setState({
+            searchText: keyText,
+            currentPage: 0
+        })
     }
 
     handleChangeDimension(option) {
-        console.log(option)
+        this.setState({
+            dimension: option.dimension,
+            currentPage: 0
+        })
     }
 
-    handlePageClick(page) {
-        console.log(page)
+    handlePageClick(pageInfo) {
+        this.setState({
+            currentPage: pageInfo.selected
+        })
     }
 
     render() {
         const city = '宁德市'
-        const { tableHeader, tableName } = makeTableInfo()
-        const tableData = makeTableData()
+        const { tableHeader, tableName } = makeTableInfo(this.state.dimension)
+        const { tableData, pageCount } = makeTableData(this.state.dimension, this.state.currentPage, this.state.searchText)
         return (
             <div className='report' >
                 <div style={{ textAlign: 'center' }} >
@@ -56,24 +68,66 @@ export default class BasicInfo extends React.Component {
                         <TableView tableHeader={tableHeader} tableName={tableName} downloadkeys={tableHeader[0]} tableData={tableData} cancelTableSort reserveRows />
                     </div>
                 </div>
-                <Paginator pageCount={15} handlePageClick={this.handlePageClick.bind(this)} />
+                <Paginator pageCount={pageCount} handlePageClick={this.handlePageClick.bind(this)} />
             </div>
         )
     }
 }
 
-function makeTableInfo() {
-    let mainHeader = [
-        { id: 'number', name: '序号' },
-        { id: 'area', name: '区县' },
-        { id: 'school_count', name: '学校数' },
-        { id: 'teacher_count', name: '教师数' },
-        { id: 'student_count', name: '学生数' },
-        { id: 'parent_count', name: '家长人数' },
-        { id: 'liankao_count', name: '联考总次数' },
-        { id: 'xiaonei_count', name: '校内考试总次数' },
-        { id: 'paper_count', name: '上传试卷总数' }
-    ];
+function makeTableInfo(dimension) {
+    let mainHeader = [];
+    switch(dimension) {
+        case 'schools':
+            mainHeader = [
+                { id: 'number', name: '序号' },
+                { id: 'school', name: '学校' },
+                { id: 'district', name: '区县' },
+                { id: 'teacherCount', name: '教师人数' },
+                { id: 'studentCount', name: '学生人数' },
+                { id: 'parentCount', name: '家长人数' },
+                { id: 'liankaoCount', name: '联考总次数' },
+                { id: 'xiaoneiCount', name: '校内考试总次数' },
+                { id: 'paperCount', name: '上传试卷总数' }
+            ];
+            break;
+        case 'teachers':
+            mainHeader = [
+                { id: 'number', name: '序号' },
+                { id: 'name', name: '姓名' },
+                { id: 'school', name: '学校' },
+                { id: 'role', name: '角色' },
+                { id: 'grade', name: '年级' },
+                { id: 'class', name: '班级' },
+                { id: 'subject', name: '学科' },
+                { id: 'contact', name: '电话' },
+                { id: 'mail', name: '邮箱' }
+            ];
+            break;
+        case 'students':
+            mainHeader = [
+                { id: 'number', name: '序号' },
+                { id: 'district', name: '区县' },
+                { id: 'school', name: '学校' },
+                { id: 'name', name: '姓名' },
+                { id: 'grade', name: '年级' },
+                { id: 'class', name: '班级' },
+                { id: 'parent', name: '家长' },
+                { id: 'parentContact', name: '家长电话' }
+            ];
+            break;
+        default:
+            mainHeader = [
+                { id: 'number', name: '序号' },
+                { id: 'district', name: '区县' },
+                { id: 'schoolCount', name: '学校数' },
+                { id: 'teacherCount', name: '教师人数' },
+                { id: 'studentCount', name: '学生人数' },
+                { id: 'parentCount', name: '家长人数' },
+                { id: 'liankaoCount', name: '联考总次数' },
+                { id: 'xiaoneiCount', name: '校内考试总次数' },
+                { id: 'paperCount', name: '上传试卷总数' }
+            ];
+    }
     _.each(mainHeader, cell => {
         cell.style = { padding: '13px 0 12px 35px', backgroundColor: '#123391', fontSize: 14 };
         cell.columnStyle = _.assign({}, cell.style, { padding: '7px 0 9px 35px', backgroundColor: '#112578', borderTop: `1px solid #112391` })
@@ -82,21 +136,29 @@ function makeTableInfo() {
     return { tableHeader: [mainHeader], tableName };
 }
 
-function makeTableData() {
-    let tableData = [];
-    for(let i=1; i<=8; i++) {
-        let row = {
-            number: i,
-            area: `区县${i}`,
-            school_count: _.random(80, 100),
-            teacher_count: _.random(200, 400),
-            student_count: _.random(2000, 4000),
-            parent_count: _.random(1000, 2000),
-            liankao_count: _.random(80, 150),
-            xiaonei_count: _.random(300, 500),
-            paper_count: _.random(100000, 120000)
+function makeTableData(dimension, currentPage, keyText) {
+    let data = mockData[dimension];
+    if(keyText) {
+        if(dimension === 'districts') {
+            data = data.filter(row => {
+                return row.district.includes(keyText)
+            })
+        } else if(dimension === 'schools') {
+            data = data.filter(row => {
+                return row.district.includes(keyText) || row.school.includes(keyText)
+            })
+        } else {
+            data = data.filter(row => {
+                return row.name.includes(keyText)
+            })
         }
-        tableData.push(row)
     }
-    return tableData
+    _.each(data, (row, i) => {
+        row.number = i+1;
+    });
+    let tableData = data.slice(currentPage*8, currentPage*8+8);
+    return {
+        tableData,
+        pageCount: _.ceil(data.length / 8)
+    }
 }

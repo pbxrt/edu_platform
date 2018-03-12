@@ -4,71 +4,101 @@ import _ from 'lodash';
 import Header from './header';
 import TableView from '../../../commonComponents/tableView';
 import Paginator from '../../../commonComponents/paginator';
-
-const periodOptions = [
-    { value: '2017-2018年上学期1', label: '2017-2018年上学期1' },
-    { value: '2017-2018年上学期2', label: '2017-2018年上学期2' },
-    { value: '2017-2018年上学期3', label: '2017-2018年上学期3' },
-    { value: '2017-2018年上学期4', label: '2017-2018年上学期4' },
-    { value: '2017-2018年上学期5', label: '2017-2018年上学期5' }
-]
-
-const subjectOptions = [
-    { value: '全科', label: '全科' },
-    { value: '数学', label: '数学' },
-    { value: '英语', label: '英语' },
-    { value: '语文', label: '语文' }
-]
-
-const schoolOptions = [
-    { value: '学校1', label: '学校1' },
-    { value: '学校2', label: '学校2' },
-    { value: '学校3', label: '学校3' },
-    { value: '学校4', label: '学校4' }
-]
+import { formatOptions } from '../../../lib/util';
 
 export default class CourseDetail extends React.Component {
     constructor(props) {
         super(props);
+        const { data } = this.props;
+        this.periodOptions = formatOptions(data.periods);
+        this.targetDetailInfo = data.courseDetail.find(item => item.period === this.periodOptions[0].value)
+        const schoolOptions = formatOptions(this.targetDetailInfo.schools);
+        const subjectOptions = formatOptions(this.targetDetailInfo.subjects)
         this.state = {
-
+            periodOptions: this.periodOptions,
+            schoolOptions,
+            subjectOptions,
+            tableData: this.targetDetailInfo.items,
+            currentPage: 0
         }
     }
 
     selectSchool(school) {
-        console.log(school)
+        if(school.value === '全部') {
+            this.setState({
+                tableData: this.targetDetailInfo.items 
+            })
+        } else {
+            this.setState({
+                tableData: this.targetDetailInfo.items.filter(row => row.school === school.value)
+            })
+        }
     }
 
     selectPeriod(period) {
-        console.log(period)   
+        this.targetDetailInfo = this.props.data.courseDetail.find(item => item.period === period.value)
+        const schoolOptions = formatOptions(this.targetDetailInfo.schools);
+        const subjectOptions = formatOptions(this.targetDetailInfo.subjects)
+        this.setState({
+            schoolOptions,
+            subjectOptions,
+            tableData: this.targetDetailInfo.items,
+            currentPage: 0
+        })
     }
 
     selectSubject(subject) {
-        console.log(subject)
+        if(subject.value === '全部') {
+            this.setState({
+                tableData: this.targetDetailInfo.items
+            })
+        } else {
+            this.setState({
+                tableData: this.targetDetailInfo.items.filter(row => row.subject === subject.value)
+            })
+        }
     }
 
-    handlePageClick(page) {
-        console.log(page)
+    handlePageClick(pageInfo) {
+        this.setState({
+            currentPage: pageInfo.selected
+        })
     }
-    
+
+    handleSearch(text) {
+        if(text) {
+            this.setState({
+                tableData: this.state.tableData.filter(row => (row.school===text) || (row.district===text))
+            })
+        } else {
+            this.setState({
+                tableData: this.targetDetailInfo.items,
+                currentPage: 0
+            })
+        }
+    }
+
     render() {
         const { tableHeader, tableName } = makeTableInfo()
-        const tableData = makeTableData()
+        const tableData = this.state.tableData;
+        const pageCount = _.chain(tableData).size().divide(8).value()
+        const showData = tableData.slice(this.state.currentPage*8, this.state.currentPage*8 + 8)
         return (
             <div className='section'>
                 <Header
                     city={'宁德市'}
-                    schoolOptions={schoolOptions}
-                    periodOptions={periodOptions}
-                    subjectOptions={subjectOptions}
+                    schoolOptions={this.state.schoolOptions}
+                    periodOptions={this.state.periodOptions}
+                    subjectOptions={this.state.subjectOptions}
                     selectSchool={this.selectSchool.bind(this)}
                     selectPeriod={this.selectPeriod.bind(this)}
                     selectSubject={this.selectSubject.bind(this)}
+                    handleSearch={this.handleSearch.bind(this)}
                 />
-                <div style={{ marginTop: 25 }} >
-                    <TableView tableHeader={tableHeader} tableName={tableName} downloadkeys={tableHeader[0]} tableData={tableData} cancelTableSort reserveRows />
+                <div style={{ margin: '50px 0' }} >
+                    <TableView tableHeader={tableHeader} tableName={tableName} downloadkeys={tableHeader[0]} tableData={showData} cancelTableSort reserveRows />
                 </div>
-                <Paginator pageCount={5} handlePageClick={this.handlePageClick.bind(this)} />
+                <Paginator pageCount={pageCount} handlePageClick={this.handlePageClick.bind(this)} />
             </div>
         )
     }
@@ -76,13 +106,11 @@ export default class CourseDetail extends React.Component {
 
 function makeTableInfo() {
     let mainHeader = [
-        { id: 'area', name: '区县' },
+        { id: 'name', name: '区县' },
         { id: 'school', name: '学校' },
-        { id: 'lesson', name: '课程' },
-        { id: 'admin_class', name: '行政班' },
-        { id: 'admin_average_count', name: '行政班平均人数' },
-        { id: 'teach_class', name: '教学班' },
-        { id: 'teach_average_count', name: '教学班平均人数' }
+        { id: 'subject', name: '学科' },
+        { id: 'course', name: '课程名称' },
+        { id: 'selectType', name: '选课类型' }
     ];
     _.each(mainHeader, cell => {
         cell.style = { padding: '13px 0 12px 35px', backgroundColor: '#123391', fontSize: 14 };
@@ -90,30 +118,4 @@ function makeTableInfo() {
     });
     const tableName = '基础信息';
     return { tableHeader: [mainHeader], tableName };
-}
-
-function makeTableData() {
-    let tableData = [];
-    for(let i=1; i<=7; i++) {
-        let row = {
-            area: `区县${i}`,
-            school: `学校${i}`,
-            lesson: '语文',
-            admin_class: _.random(100, 500),
-            admin_average_count: _.random(30, 50),
-            teach_class: _.random(120000, 130000),
-            teach_average_count: _.random(200, 300)
-        }
-        tableData.push(row)
-    }
-    tableData.unshift({
-        area: `全部`,
-        school: '全部',
-        lesson: '语文',
-        admin_class: 1000,
-        admin_average_count: 45,
-        teach_class: _.random(120000, 130000),
-        teach_average_count: _.random(200, 300)
-    })
-    return tableData
 }

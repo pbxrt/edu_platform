@@ -15,6 +15,12 @@ export default class Search extends React.Component {
         this.setState({ text: event.nativeEvent.target.value })
     }
 
+    handleKeyUp(event) {
+        if(event.nativeEvent.keyCode === 13) {
+            this.props.handleSearch(this.state.text)
+        }
+    }
+
     handleOnBlur(event) {
         this.props.handleSearch(this.state.text)
     }
@@ -40,6 +46,7 @@ export default class Search extends React.Component {
                     type='text'
                     value={this.state.text}
                     onChange={this.handleOnChange.bind(this)}
+                    onKeyUp={this.handleKeyUp.bind(this)}
                     onBlur={this.handleOnBlur.bind(this)}
                 />
             </div>

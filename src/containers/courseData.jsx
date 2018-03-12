@@ -3,6 +3,7 @@ import React from 'react';
 import FloatToggle from '../commonComponents/float-toggle';
 import CourseStatis from '../components/courseData/courseStatis';
 import CourseDetail from '../components/courseData/courseDetail';
+import mockData from '../mockData/course.json';
 
 const options = [
     { value: '课程数据统计', label: '课程数据统计' },
@@ -26,8 +27,8 @@ export default class CourseData extends React.Component {
         return (
             <div className='report' >
                 <FloatToggle options={options} handleSelect={this.handleSelect.bind(this)} />
-                { this.state.option.value === '课程数据统计' ? <CourseStatis /> : null }
-                { this.state.option.value === '课程数据详情' ? <CourseDetail /> : null }
+                { this.state.option.value === '课程数据统计' ? <CourseStatis data={mockData} /> : null }
+                { this.state.option.value === '课程数据详情' ? <CourseDetail data={mockData.detail} /> : null }
             </div>
         )
     }

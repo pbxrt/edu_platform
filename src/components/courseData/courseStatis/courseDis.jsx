@@ -9,29 +9,25 @@ import Toggle from '../../../commonComponents/binary-toggle';
 export default class CourseDis extends React.Component {
     constructor(props) {
         super(props);
-        this.options = this.options = [ { value: '区县', label: '区县' }, { value: '学校', label: '学校' }];
+        this.dimensions = [ { value: '区县', label: '区县' }, { value: '学校', label: '学校' }];
         this.state = {
-
+            currentDimension: this.dimensions[0]
         }
     }
 
-    handleToggle(option) {
-        let newData = [];
-        for(let i=0; i<5; i++) {
-            newData.push(_.random(10, 40))
-        }
+    handleToggle(dimension) {
         this.setState({
-            data: newData
+            currentDimension: dimension
         })
     }
 
     render() {
-        const option = makeOption()
+        const option = makeOption(this.props.statis, this.state.currentDimension)
         return (
             <div className='section' style={{ backgroundColor: '#112b84' }} >
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '25px 0' }} >
                     <div className='section-title'>课程类型分布：</div>
-                    <Toggle options={this.options} handleToggle={this.handleToggle.bind(this)} />
+                    <Toggle options={this.dimensions} handleToggle={this.handleToggle.bind(this)} />
                 </div>
                 <EchartsForReact
                     option={option}
@@ -42,7 +38,15 @@ export default class CourseDis extends React.Component {
     }
 }
 
-function makeOption() {
+function makeOption(statis, dimension) {
+    const dimensionMap = {
+        "区县": 'districts',
+        "学校": 'schools'
+    };
+    const targetInfo = statis.courseDis[dimensionMap[dimension.value]];
+    const categories = _.map(targetInfo, 'name');
+    const requiredCourseCount = _.map(targetInfo, 'required');
+    const electiveCourseCount = _.map(targetInfo, 'elective')
     const barWidth = 30;
     const color1 = new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
         { offset: 0, color: '#293dbd' },
@@ -57,7 +61,7 @@ function makeOption() {
         type: 'bar',
         legend: {
             show: true,
-            data: ['区县一', '区县二'],
+            data: ['必修课', '自选课'],
             textStyle: {
                 color: '#fff'
             }
@@ -76,7 +80,7 @@ function makeOption() {
             {
                 type: 'category',
                 axisTick: {show: false},
-                data: ['区域一', '区域二', '区域三', '区域四', '区域五'],
+                data: categories,
                 axisLine: {
                     lineStyle: {
                         color: '#596ba9',
@@ -118,8 +122,8 @@ function makeOption() {
         series: [
             {
                 type: 'bar',
-                name: '区县一',
-                data: [400, 340, 250, 160, 120],
+                name: '必修课',
+                data: requiredCourseCount,
                 barWidth,
                 barGap: 0,
                 itemStyle: {
@@ -137,8 +141,8 @@ function makeOption() {
             },
             {
                 type: 'bar',
-                name: '区县二',
-                data: [100, 100, 150, 170, 120],
+                name: '自选课',
+                data: electiveCourseCount,
                 barWidth,
                 itemStyle: {
                     normal: {

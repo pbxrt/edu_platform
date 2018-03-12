@@ -1,6 +1,13 @@
 import _ from 'lodash';
 import XLSX from 'xlsx';
 
+export function formatOptions(arr) {
+    return _.map(arr, item => ({
+        value: item,
+        label: item
+    }));
+}
+
 export function downloadData(cols, rows, tableName, isAll) {
     var sec = 0;
     if(isAll === true) {

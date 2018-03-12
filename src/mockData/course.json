@@ -1,0 +1,108 @@
+{
+    "periods": [
+        "2016-2017下学期",
+        "2017-2018上学期"
+    ],
+    "grades": [
+        "高一"
+    ],
+    "statis": [
+        {
+            "period": "2016-2017下学期",
+            "grade": "高一",
+            "subjectCount": 234,
+            "requiredCourse": 686,
+            "courseCount": 1875,
+            "selfSelectCourse": 486,
+            "courseDis": {
+                "districts": [
+                    { "name": "区县1", "required": 400, "elective": 100 },
+                    { "name": "区县2", "required": 340, "elective": 140 },
+                    { "name": "区县3", "required": 250, "elective": 110 },
+                    { "name": "区县4", "required": 400, "elective": 160 },
+                    { "name": "区县5", "required": 350, "elective": 97 }
+                ],
+                "schools": [
+                    { "name": "学校1", "required": 300, "elective": 120 },
+                    { "name": "学校2", "required": 360, "elective": 160 },
+                    { "name": "学校3", "required": 220, "elective": 102 },
+                    { "name": "学校4", "required": 380, "elective": 130 },
+                    { "name": "学校5", "required": 390, "elective": 123 }
+                ]
+            },
+            "courseDetail": {
+                "districts": [
+                    { "name": "全部", "subjectCount": 3000, "courseCount": 1000, "required": 800, "elective": 100 },
+                    { "name": "区县1", "subjectCount": 3100, "courseCount": 1200, "required": 700, "elective": 90 },
+                    { "name": "区县2", "subjectCount": 3030, "courseCount": 1300, "required": 600, "elective": 90 },
+                    { "name": "区县3", "subjectCount": 4200, "courseCount": 1400, "required": 500, "elective": 110 },
+                    { "name": "区县4", "subjectCount": 2500, "courseCount": 1100, "required": 600, "elective": 120 },
+                    { "name": "区县5", "subjectCount": 1700, "courseCount": 1200, "required": 700, "elective": 80 },
+                    { "name": "区县6", "subjectCount": 4070, "courseCount": 1300, "required": 600, "elective": 90 },
+                    { "name": "区县7", "subjectCount": 3020, "courseCount": 1100, "required": 800, "elective": 100 }
+                ],
+                "schools": [
+                    { "district": "全部", "name": "全部", "subjectCount": 3000, "courseCount": 1000, "required": 800, "elective": 100 },
+                    {"district":"区县1","name":"学校1","subjectCount":2854,"courseCount":993,"required":699,"elective":102},
+                    {"district":"区县2","name":"学校2","subjectCount":2903,"courseCount":1159,"required":630,"elective":99},
+                    {"district":"区县3","name":"学校3","subjectCount":2847,"courseCount":855,"required":970,"elective":112},
+                    {"district":"区县4","name":"学校4","subjectCount":2577,"courseCount":859,"required":902,"elective":120},
+                    {"district":"区县5","name":"学校5","subjectCount":2868,"courseCount":1066,"required":957,"elective":92},
+                    {"district":"区县6","name":"学校6","subjectCount":2704,"courseCount":959,"required":896,"elective":107},
+                    {"district":"区县7","name":"学校7","subjectCount":2791,"courseCount":810,"required":761,"elective":108}
+                ]
+            }
+        },
+        {
+            "period": "2017-2018上学期",
+            "grade": "高一",
+            "subjectCount": 229,
+            "requiredCourse": 692,
+            "courseCount": 1902,
+            "selfSelectCourse": 510,
+            "courseDis": {
+                "districts": [
+                    { "name": "区县1", "required": 500, "elective": 140 },
+                    { "name": "区县1", "required": 440, "elective": 160 },
+                    { "name": "区县1", "required": 350, "elective": 150 },
+                    { "name": "区县1", "required": 300, "elective": 260 },
+                    { "name": "区县1", "required": 370, "elective": 137 }
+                ],
+                "schools": [
+                    { "name": "学校1", "required": 400, "elective": 220 },
+                    { "name": "学校2", "required": 460, "elective": 360 },
+                    { "name": "学校3", "required": 320, "elective": 202 },
+                    { "name": "学校4", "required": 480, "elective": 230 },
+                    { "name": "学校5", "required": 490, "elective": 223 }
+                ]
+            },
+            "courseDetail": {
+                "districts": [
+                    { "name": "全部", "subjectCount": 3000, "courseCount": 1000, "required": 800, "elective": 100 },
+                    {"name":"区县1","subjectCount":2727,"courseCount":855,"required":917,"elective":112},{"name":"区县2","subjectCount":2561,"courseCount":1059,"required":859,"elective":98},{"name":"区县3","subjectCount":2748,"courseCount":1176,"required":769,"elective":107},{"name":"区县4","subjectCount":2909,"courseCount":1193,"required":890,"elective":103},{"name":"区县5","subjectCount":2816,"courseCount":1106,"required":681,"elective":113},{"name":"区县6","subjectCount":2718,"courseCount":1185,"required":746,"elective":90},{"name":"区县7","subjectCount":2909,"courseCount":1050,"required":865,"elective":95}
+                ],
+                "schools": [
+                    { "district": "全部", "name": "全部", "subjectCount": 3000, "courseCount": 1000, "required": 800, "elective": 100 },
+                    {"district":"区县1","name":"学校1","subjectCount":2931,"courseCount":1104,"required":998,"elective":102},{"district":"区县2","name":"学校2","subjectCount":2797,"courseCount":1058,"required":674,"elective":118},{"district":"区县3","name":"学校3","subjectCount":2972,"courseCount":876,"required":640,"elective":98},{"district":"区县4","name":"学校4","subjectCount":2608,"courseCount":1107,"required":693,"elective":92},{"district":"区县5","name":"学校5","subjectCount":2809,"courseCount":1102,"required":912,"elective":101},{"district":"区县6","name":"学校6","subjectCount":2964,"courseCount":1097,"required":711,"elective":110},{"district":"区县7","name":"学校7","subjectCount":2796,"courseCount":869,"required":797,"elective":115}
+                ]
+            }
+        }
+    ],
+    "detail": {
+        "periods": ["2016-2017下学期","2017-2018上学期"],
+        "courseDetail": [
+            {
+                "period": "2016-2017下学期",
+                "schools": ["全部", "学校1", "学校2", "学校3"],
+                "subjects": ["全部", "语文", "数学"],
+                "items": [{"name":"区县2","school":"学校2","subject":"语文","course":"古诗鉴赏","selectType":"必选课"},{"name":"区县1","school":"学校1","subject":"语文","course":"古诗鉴赏","selectType":"必选课"},{"name":"区县3","school":"学校3","subject":"数学","course":"奥数","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"语文","course":"阅读理解","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"数学","course":"奥数","selectType":"必选课"},{"name":"区县1","school":"学校1","subject":"语文","course":"阅读理解","selectType":"必选课"},{"name":"区县3","school":"学校3","subject":"语文","course":"古诗鉴赏","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"数学","course":"奥数","selectType":"自选课"},{"name":"区县3","school":"学校3","subject":"数学","course":"奥数","selectType":"必选课"},{"name":"区县3","school":"学校3","subject":"语文","course":"阅读理解","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"语文","course":"阅读理解","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"数学","course":"奥数","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"语文","course":"古诗鉴赏","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"数学","course":"奥数","selectType":"选修课"},{"name":"区县3","school":"学校3","subject":"数学","course":"奥数","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"语文","course":"剑桥语文","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"数学","course":"奥数","selectType":"必选课"},{"name":"区县3","school":"学校3","subject":"数学","course":"奥数","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"语文","course":"古诗鉴赏","selectType":"选修课"},{"name":"区县3","school":"学校3","subject":"语文","course":"阅读理解","selectType":"必选课"},{"name":"区县3","school":"学校3","subject":"数学","course":"奥数","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"语文","course":"古诗鉴赏","selectType":"自选课"},{"name":"区县3","school":"学校3","subject":"数学","course":"奥数","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"数学","course":"奥数","selectType":"选修课"},{"name":"区县3","school":"学校3","subject":"数学","course":"奥数","selectType":"选修课"},{"name":"区县1","school":"学校1","subject":"数学","course":"奥数","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"语文","course":"古诗鉴赏","selectType":"必选课"},{"name":"区县1","school":"学校1","subject":"数学","course":"奥数","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"数学","course":"奥数","selectType":"自选课"},{"name":"区县3","school":"学校3","subject":"数学","course":"奥数","selectType":"选修课"}]
+            },
+            {
+                "period": "2017-2018上学期",
+                "schools": ["全部", "学校1", "学校2"],
+                "subjects": ["全部", "英语", "历史"],
+                "items": [{"name":"区县1","school":"学校1","subject":"英语","course":"找错","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"英语","course":"找错","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"历史","course":"辨识","selectType":"选修课"},{"name":"区县2","school":"学校2","subject":"英语","course":"阅读理解","selectType":"选修课"},{"name":"区县2","school":"学校2","subject":"历史","course":"阅读理解","selectType":"选修课"},{"name":"区县2","school":"学校2","subject":"历史","course":"辨识","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"英语","course":"完形填空","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"历史","course":"明智","selectType":"必选课"},{"name":"区县1","school":"学校1","subject":"英语","course":"阅读理解","selectType":"选修课"},{"name":"区县1","school":"学校1","subject":"英语","course":"完形填空","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"历史","course":"阅读理解","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"英语","course":"找错","selectType":"必选课"},{"name":"区县1","school":"学校1","subject":"英语","course":"完形填空","selectType":"选修课"},{"name":"区县2","school":"学校2","subject":"历史","course":"辨识","selectType":"选修课"},{"name":"区县2","school":"学校2","subject":"英语","course":"找错","selectType":"选修课"},{"name":"区县1","school":"学校1","subject":"英语","course":"找错","selectType":"选修课"},{"name":"区县1","school":"学校1","subject":"历史","course":"阅读理解","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"历史","course":"明智","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"历史","course":"阅读理解","selectType":"选修课"},{"name":"区县2","school":"学校2","subject":"历史","course":"辨识","selectType":"自选课"},{"name":"区县2","school":"学校2","subject":"历史","course":"明智","selectType":"选修课"},{"name":"区县2","school":"学校2","subject":"历史","course":"阅读理解","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"历史","course":"辨识","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"英语","course":"完形填空","selectType":"必选课"},{"name":"区县2","school":"学校2","subject":"英语","course":"完形填空","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"英语","course":"阅读理解","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"历史","course":"辨识","selectType":"自选课"},{"name":"区县1","school":"学校1","subject":"历史","course":"明智","selectType":"选修课"},{"name":"区县1","school":"学校1","subject":"历史","course":"阅读理解","selectType":"选修课"},{"name":"区县2","school":"学校2","subject":"英语","course":"找错","selectType":"必选课"}]
+            }
+        ]
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "position": {
+        "province": "福建",
+        "city": "宁德市"
+    },
+    "periods": [],
+    "grades": [],
+    "user": {
+        "totalStatis": {
+            "users": 2341,
+            "schools": 273,
+            "districts": 15,
+            "teachers": 986,
+            "students": 10875,
+            "parents": 886
+        },
+        "genderCompare": {
+            "districts":[
+
+            ],
+            "schools": [
+
+            ]
+        }
+    },
+    "asset": {
+
+    }
+}

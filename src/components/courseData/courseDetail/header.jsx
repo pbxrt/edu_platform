@@ -8,36 +8,49 @@ export default class Header extends React.Component {
         super(props);
         this.state = {
             text: '',
-            period: this.props.periodOptions[0],
-            subject: this.props.subjectOptions[0]
+            currentPeriod: this.props.periodOptions[0],
+            currentSubject: this.props.subjectOptions[0],
+            currentSchool: this.props.schoolOptions[0]
         }
     }
 
-    handleSearch(text) {
-        console.log('search text : ', text)
+    componentWillReceiveProps(nextProps) {
+        if(this.props !== nextProps) {
+            this.setState({
+                text: ''
+            })
+        }
     }
 
     selectSchool(school) {
-        console.log('school ===>', school)
-        this.props.selectSchool(school)
+        this.props.selectSchool(school);
+        this.setState({
+            currentSchool: school
+        })
     }
 
     selectPeriod(period) {
-        this.setState({ period })
+        this.props.selectPeriod(period)
+        this.setState({
+            currentPeriod: period
+        })
     }
 
     selectSubject(subject) {
-        this.setState({ subject })
+        this.props.selectSubject(subject);
+        this.setState({
+            currentSubject: subject
+        })
     }
 
     render() {
         return (
             <header style={{ padding: '0 0 26px 0', textAlign: 'center' }} >
                 <div style={{ paddingRight: 165 }} >
-                    <div style={{ fontSize: 24, paddingBottom: 26 }} >{this.props.city}课时详细数据</div>
+                    <div style={{ fontSize: 24, paddingBottom: 26 }} >{this.props.city}课程详细数据</div>
                     <Search
                         useFor='search-basic-info'
-                        handleSearch={this.handleSearch.bind(this)}
+                        handleSearch={this.props.handleSearch.bind(this)}
                         placeholder={'输入学校、老师搜索'}
                         width={260}
                     />

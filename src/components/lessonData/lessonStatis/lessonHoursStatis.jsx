@@ -28,14 +28,14 @@ const gradeOptions = [
 const most = '#fdf258';
 const least = '#fe557a';
 
-const Card = ({ text, subject, mean, max, min, isMost }) => (
+const Card = ({ text, name, mean, max, min, isMost }) => (
     <div style={{ textAlign: 'center', width: 282, height: 210, background: '#112272', borderRadius: 2 }} >
         <header style={{ height: 40, textAlign: 'center', lineHeight: '40px', background: '#11308d', borderRadius: '2px 2px 0 0' }} >
             {text}
             <span style={{color: isMost ? most : least}} >{isMost ? '最多' : '最少'}</span>
             的科目
         </header>
-        <main style={{ height: 88, margin: '0 17px',color: isMost ? most : least, borderBottom: '1px solid #28397f', fontSize: 35, lineHeight: '87px' }} >{subject}</main>
+        <main style={{ height: 88, margin: '0 17px',color: isMost ? most : least, borderBottom: '1px solid #28397f', fontSize: 35, lineHeight: '87px' }} >{name}</main>
         <div style={{ margin: '15px 17px', display: 'flex', justifyContent: 'space-between' }} >
             <div style={{ flex: 1, borderRight: '1px solid #28397f' }} >
                 <div style={{ fontSize: 20, color: '#7ed8fd'}} >{mean}</div>
@@ -54,44 +54,14 @@ const Card = ({ text, subject, mean, max, min, isMost }) => (
 )
 
 export default class LessonHoursStatis extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
-    selectPeriod(period) {
-        this.setState({ period })
-    }
-
-    selectGrade(grade) {
-        this.setState({ grade })
-    }
-
     render() {
-        const city = '宁德市'
-        const grade = '高一'
+        const { week: weekData, class: classData } = this.props.data;
         return (
-            <div className='section'>
-                <div style={{ fontSize: 22, textAlign: 'center', paddingRight: 165 }} >{city}{grade}课时数据统计</div>
-                <header style={{ padding: '18px 0 68px 0', textAlign: 'right' }} >
-                    <div style={{ display: 'inline-block' }} >
-                        <Select
-                            options={periodOptions}
-                            handleSelect={this.selectPeriod.bind(this)}
-                        />
-                    </div>
-                    <div style={{ display: 'inline-block', marginLeft: 10 }} >
-                        <Select
-                            options={gradeOptions}
-                            handleSelect={this.selectGrade.bind(this)}
-                        />
-                    </div>
-                </header>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }} >
-                    { _.map(mockData, (data, i) => (<Card key={i} {...data} />))}      
-                </div>
+            <div className='section' style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Card {...weekData.most} text={'人均授课周课时'} isMost />
+                <Card {...weekData.least} text={'人均授课周课时'} />
+                <Card {...classData.most} text={'人均授课班级'} isMost />
+                <Card {...classData.least} text={'人均授课班级'} />
             </div>
         )
     }
