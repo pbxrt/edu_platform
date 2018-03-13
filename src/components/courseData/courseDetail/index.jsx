@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import Header from './header';
-import TableView from '../../../commonComponents/tableView';
+import TableView from '../../../commonComponents/table';
 import Paginator from '../../../commonComponents/paginator';
 import { formatOptions } from '../../../lib/util';
 
@@ -96,7 +96,16 @@ export default class CourseDetail extends React.Component {
                     handleSearch={this.handleSearch.bind(this)}
                 />
                 <div style={{ margin: '50px 0' }} >
-                    <TableView tableHeader={tableHeader} tableName={tableName} downloadkeys={tableHeader[0]} tableData={showData} cancelTableSort reserveRows />
+                    <TableView
+                        tableHeader={tableHeader}
+                        tableName={tableName}
+                        downloadkeys={tableHeader[0]}
+                        tableData={showData}
+                        headRowClassName={'thead-row-deep'}
+                        bodyRowClassName={'tbody-row-deep'}
+                        reserveRows
+                        cancelTableSort
+                    />
                 </div>
                 <Paginator pageCount={pageCount} forcePage={this.state.currentPage} handlePageClick={this.handlePageClick.bind(this)} />
             </div>
@@ -112,10 +121,6 @@ function makeTableInfo() {
         { id: 'course', name: '课程名称' },
         { id: 'selectType', name: '选课类型' }
     ];
-    _.each(mainHeader, cell => {
-        cell.style = { padding: '13px 0 12px 35px', backgroundColor: '#123391', fontSize: 14 };
-        cell.columnStyle = _.assign({}, cell.style, { padding: '7px 0 9px 35px', backgroundColor: '#112578', borderTop: `1px solid #112391` })
-    });
     const tableName = '基础信息';
     return { tableHeader: [mainHeader], tableName };
 }

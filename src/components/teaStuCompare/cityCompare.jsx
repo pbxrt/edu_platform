@@ -3,7 +3,6 @@ import _ from 'lodash';
 import EchartsForReact from 'echarts-for-react'
 import Echarts from 'echarts';
 
-import Select from '../../commonComponents/select';
 import Toggle from '../../commonComponents/binary-toggle';
 
 const Item = ({ number, text }) => (
@@ -16,77 +15,57 @@ const Item = ({ number, text }) => (
 export default class CityCompare extends React.Component {
     constructor(props) {
         super(props);
-        this.options = [ { value: '区县', label: '区县' }, { value: '学校', label: '学校' }];
+        this.dimensions = [ { value: 'districts', label: '区县' }, { value: 'schools', label: '学校' }];
         this.state = {
-            data: [39, 29, 26, 17, 12]
+            currentDimension: this.dimensions[0]
         }
     }
 
-    selectPeriod(period) {
-        this.setState({ period })
-    }
-
-    selectGrade(grade) {
-        this.setState({ grade })
-    }
-
-    handleToggle(option) {
-        let newData = [];
-        for(let i=0; i<5; i++) {
-            newData.push(_.random(10, 40))
-        }
-        this.setState({
-            data: newData
-        })
+    handleToggle(dimension) {
+        this.setState({ currentDimension: dimension })
     }
 
     render() {
-        const { periodOptions, gradeOptions, city } = this.props;
-        const option = makeOption(this.state.data)
+        const { targetData } = this.props;
+        const [ totalTeacher, totalStudent, totalRate ] = makeTotalStatis(targetData, this.state.currentDimension)
+        const option = makeOption(targetData, this.state.currentDimension)
         return (
-            <div >
-                <div style={{width: 1155, margin: '0 auto', padding: '40px 0 60px 0'}} >
-                    <header style={{ position: 'relative', padding: '18px 0 68px 0' }} >
-                        <div style={{ position: 'absolute', right: 0, display: 'flex', justifyContent: 'flex-end' }} >
-                            <Select
-                                options={periodOptions}
-                                handleSelect={this.selectPeriod.bind(this)}
-                            />
-                            <div style={{ display: 'inline-block', paddingLeft: 10}} >
-                                <Select
-                                    options={gradeOptions}
-                                    handleSelect={this.selectGrade.bind(this)}
-                                    width={100}
-                                />
-                            </div>
-                        </div>
-                        <div style={{ fontSize: 22, textAlign: 'center' }} >{city}师生比例分析</div>
-                    </header>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }} >
-                        <Item number={179} text={'教师'} />
-                        <Item number={160997} text={'学生'} />
-                        <Item number={'1:28'} text={'师生比'} />
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '25px 0' }} >
-                        <div className='section-title'>师生有效比分布：</div>
-                        <Toggle options={this.options} handleToggle={this.handleToggle.bind(this)} />
-                    </div>
-                    <EchartsForReact
-                        option={option}
-                        style={{ width: '100%', height: 360, position: 'relative' }}
-                    />
+            <div style={{ position: 'relative', width: 1155, margin: '0 auto', paddingBottom: 30}} >
+                <div style={{ display: 'flex', justifyContent: 'space-between' }} >
+                    <Item number={totalTeacher} text={'教师'} />
+                    <Item number={totalStudent} text={'学生'} />
+                    <Item number={totalRate} text={'师生比'} />
                 </div>
+                <div style={{ position: 'absolute', right: 0, top: 60, zIndex: 1 }}>
+                    <Toggle options={this.dimensions} handleToggle={this.handleToggle.bind(this)} />
+                </div>
+                <EchartsForReact
+                    option={option}
+                    style={{ width: '100%', height: 360, position: 'relative' }}
+                />
             </div>
         )
     }
 }
 
-function makeOption(data) {
+function makeTotalStatis(targetData, dimension) {
+    const dimensionData = targetData.dis[dimension.value];
+    const totalTeacher = _.chain(dimensionData).map('teacher').sum().value();
+    const totalStudent = _.chain(dimensionData).map('student').sum().value();
+    const totalRate = `1: ${_.floor(totalStudent/totalTeacher)}`;
+    return [ totalTeacher, totalStudent, totalRate ];
+}
+
+function makeOption(targetData, dimension) {
+    const dimensionData = targetData.dis[dimension.value];
     const barWidth = 30;
     const color = new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
         { offset: 0, color: '#293dbd' },
         { offset: 1, color: '#1baff3' }
     ]);
+    const ratesInfo = _.chain(dimensionData).map(item => ({ name: item.name, rate: _.round(item.student/item.teacher)})).orderBy(['rate'], ['desc']).value()
+    const categories = _.map(ratesInfo, 'name');
+    const data = _.map(ratesInfo, 'rate');
     return {
         color: [color],
         type: 'bar',
@@ -107,7 +86,7 @@ function makeOption(data) {
             {
                 type: 'category',
                 axisTick: {show: false},
-                data: ['区域一', '区域二', '区域三', '区域四', '区域五'],
+                data: categories,
                 axisLine: {
                     lineStyle: {
                         color: '#596ba9',

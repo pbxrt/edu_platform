@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import Toggle from '../../../commonComponents/binary-toggle';
-import TableView from '../../../commonComponents/tableView';
+import TableView from '../../../commonComponents/table';
 
 export default class AreaDetail extends React.Component {
     constructor(props) {
@@ -34,7 +34,16 @@ export default class AreaDetail extends React.Component {
                     <div style={{ flex: 1 }} ></div>
                 </header>
                 <div style={{ marginTop: 30 }} >
-                    <TableView tableHeader={tableHeader} tableData={tableData} tableName={tableName} downloadkeys={downloadkeys} reserveRows cancelTableSort />
+                    <TableView
+                        tableHeader={tableHeader}
+                        tableName={tableName}
+                        downloadkeys={downloadkeys}
+                        tableData={tableData}
+                        headRowClassName={'thead-row-deep'}
+                        bodyRowClassName={'tbody-row-deep'}
+                        reserveRows
+                        cancelTableSort
+                    />
                 </div>
             </div>
         )
@@ -58,18 +67,6 @@ function makeTableHeader(subjects) {
             { id: `${subject.id}_max`, name: `${subject.name}最大班级数` },
             { id: `${subject.id}_min`, name: `${subject.name}最小班级数` }
         );
-    });
-    _.each(mainHeader, cell => {
-        cell.style = { padding: '10px 0 9px 35px', backgroundColor: '#123391', textAlign: 'center' };
-        if(cell.id) {
-            cell.columnStyle = { padding: '9px 0 9px 35px', backgroundColor: '#112578', borderTop: '1px solid #123391'}    
-        }    
-    });
-    _.each(subHeader, cell => {
-        if(cell.id) {
-            cell.style = { padding: '10px 0 9px 35px', backgroundColor: '#123391' };
-            cell.columnStyle = { padding: '9px 0 9px 35px', backgroundColor: '#112578', borderTop: '1px solid #123391'}
-        }
     });
     const tableName = '县详细数据';
     return { tableHeader: [mainHeader, subHeader], downloadkeys, tableName };

@@ -1,37 +1,43 @@
 import React from 'react';
 
+import Header from '../components/teaStuCompare/header';
 import CityCompare from '../components/teaStuCompare/cityCompare';
 import DistrictCompare from '../components/teaStuCompare/districtCompare';
 import SchoolCompare from '../components/teaStuCompare/schoolCompare';
-
-const periodOptions = [
-    { value: '2017-2018学年上学期', label: '2017-2018学年上学期' },
-    { value: '2017-2018学年上学期1', label: '2017-2018学年上学期1' },
-    { value: '2017-2018学年上学期2', label: '2017-2018学年上学期2' },
-    { value: '2017-2018学年上学期3', label: '2017-2018学年上学期3' }
-];
-
-const gradeOptions = [
-    { value: '高一', label: '高一' },
-    { value: '高二', label: '高二' },
-    { value: '初一', label: '初一' },
-    { value: '高三', label: '高三' }
-]
+import mockData from '../mockData/teaStu.json';
 
 export default class TeaStuCompare extends React.Component {
     constructor(props) {
         super(props);
+        this.info = mockData.info;
         this.state = {
-
+            currentPeriod: this.info.periods[0],
+            currentGrade: this.info.grades[0]
         }
     }
 
+    selectPeriod(period) {
+        this.setState({ currentPeriod: period.label })
+    }
+
+    selectGrade(grade) {
+        this.setState({ currentGrade: grade.label })
+    }
+
     render() {
+        const targetData = mockData.statis.find(item => (item.period===this.state.currentPeriod) && (item.grade===this.state.currentGrade))
         return (
             <div className='report' >
-                <CityCompare periodOptions={periodOptions} gradeOptions={gradeOptions} city={'宁德市'} />
-                <DistrictCompare />
-                <SchoolCompare />
+                <Header
+                    info={this.info}
+                    title={'师生比例分析'}
+                    subTitle={'师生有效比分布'}
+                    selectPeriod={this.selectPeriod.bind(this)}
+                    selectGrade={this.selectGrade.bind(this)}
+                />
+                <CityCompare info={this.info} targetData={targetData} />
+                <DistrictCompare info={this.info} targetData={targetData} />
+                <SchoolCompare info={this.info} targetData={targetData} />
             </div>
         )
     }
