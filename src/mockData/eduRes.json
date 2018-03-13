@@ -1,29 +1,106 @@
 {
-    "position": {
+    "info": {
         "province": "福建",
-        "city": "宁德市"
+        "city": "宁德市",
+        "periods": ["2016-2017下学期", "2017-2018上学期"],
+        "grades": ["高一"]
     },
-    "periods": [],
-    "grades": [],
-    "user": {
-        "totalStatis": {
-            "users": 2341,
-            "schools": 273,
-            "districts": 15,
-            "teachers": 986,
-            "students": 10875,
-            "parents": 886
+    "user": [
+        {
+            "period": "2016-2017下学期",
+            "grade": "高一",
+            "totalStatis": {
+                "users": 2341,
+                "schools": 273,
+                "districts": 15,
+                "teachers": 986,
+                "students": 10875,
+                "parents": 886
+            },
+            "dis": {
+                "legend": [{"key":"teacher","name":"教室"},{"key":"student","name":"学生"},{"key":"parent","name":"家长"}],
+                "districts":[{"name":"区县1","teacher":176,"student":383,"parent":491},{"name":"区县2","teacher":147,"student":121,"parent":402},{"name":"区县3","teacher":147,"student":238,"parent":413},{"name":"区县4","teacher":220,"student":282,"parent":287}],
+                "schools": [{"name":"学校1","teacher":238,"student":163,"parent":374},{"name":"学校2","teacher":116,"student":259,"parent":434},{"name":"学校3","teacher":228,"student":168,"parent":284},{"name":"学校4","teacher":182,"student":265,"parent":129}]
+            },
+            "genderCompare": {
+                "districts": [{"number":1,"district":"区县1","male":0.55,"female":0.45},{"number":2,"district":"区县2","male":0.44,"female":0.56},{"number":3,"district":"区县3","male":0.69,"female":0.31},{"number":4,"district":"区县4","male":0.59,"female":0.41},{"number":5,"district":"区县5","male":0.47,"female":0.53},{"number":6,"district":"区县6","male":0.68,"female":0.32},{"number":7,"district":"区县7","male":0.43,"female":0.57}],
+                "schools": [{"number":1,"school":"学校1","male":0.39,"female":0.61},{"number":2,"school":"学校2","male":0.6,"female":0.4},{"number":3,"school":"学校3","male":0.36,"female":0.64},{"number":4,"school":"学校4","male":0.23,"female":0.77},{"number":5,"school":"学校5","male":0.36,"female":0.64},{"number":6,"school":"学校6","male":0.48,"female":0.52},{"number":7,"school":"学校7","male":0.42,"female":0.58}]
+            },
+            "userDisDetail": {
+                "districts": [{"district":"全部","userCount":6253,"teacherCount":1053,"studentCount":4207,"parentCount":993},{"district":"区县1","userCount":998,"teacherCount":82,"studentCount":762,"parentCount":154},{"district":"区县2","userCount":855,"teacherCount":123,"studentCount":627,"parentCount":105},{"district":"区县3","userCount":846,"teacherCount":173,"studentCount":495,"parentCount":178},{"district":"区县4","userCount":887,"teacherCount":177,"studentCount":598,"parentCount":112},{"district":"区县5","userCount":903,"teacherCount":166,"studentCount":604,"parentCount":133},{"district":"区县6","userCount":963,"teacherCount":174,"studentCount":631,"parentCount":158},{"district":"区县7","userCount":801,"teacherCount":158,"studentCount":490,"parentCount":153}],
+                "schools": [{"school":"全部","district":"全部","userCount":6369,"teacherCount":924,"studentCount":4454,"parentCount":991},{"school":"学校1","district":"区县X","userCount":932,"teacherCount":184,"studentCount":603,"parentCount":145},{"school":"学校2","district":"区县X","userCount":821,"teacherCount":84,"studentCount":552,"parentCount":185},{"school":"学校3","district":"区县X","userCount":898,"teacherCount":186,"studentCount":592,"parentCount":120},{"school":"学校4","district":"区县X","userCount":840,"teacherCount":88,"studentCount":620,"parentCount":132},{"school":"学校5","district":"区县X","userCount":929,"teacherCount":126,"studentCount":661,"parentCount":142},{"school":"学校6","district":"区县X","userCount":979,"teacherCount":167,"studentCount":685,"parentCount":127},{"school":"学校7","district":"区县X","userCount":970,"teacherCount":89,"studentCount":741,"parentCount":140}]
+            }
         },
-        "genderCompare": {
-            "districts":[
-
-            ],
-            "schools": [
-
-            ]
+        {
+            "period": "2017-2018上学期",
+            "grade": "高一",
+            "totalStatis": {
+                "users": 2414,
+                "schools": 303,
+                "districts": 11,
+                "teachers": 1002,
+                "students": 11002,
+                "parents": 903
+            },
+            "dis": {
+                "legend": [{"key":"teacher","name":"教室"},{"key":"student","name":"学生"},{"key":"parent","name":"家长"}],
+                "districts":[{"name":"区县1","teacher":219,"student":118,"parent":498},{"name":"区县2","teacher":185,"student":396,"parent":415},{"name":"区县3","teacher":158,"student":319,"parent":117},{"name":"区县4","teacher":178,"student":205,"parent":318}],
+                "schools": [{"name":"学校1","teacher":238,"student":163,"parent":374},{"name":"学校2","teacher":116,"student":259,"parent":434},{"name":"学校3","teacher":228,"student":168,"parent":284},{"name":"学校4","teacher":182,"student":265,"parent":129}]
+            },
+            "genderCompare": {
+                "districts": [{"number":1,"district":"区县1","male":0.51,"female":0.49},{"number":2,"district":"区县2","male":0.6,"female":0.4},{"number":3,"district":"区县3","male":0.54,"female":0.46},{"number":4,"district":"区县4","male":0.47,"female":0.53},{"number":5,"district":"区县5","male":0.46,"female":0.54},{"number":6,"district":"区县6","male":0.46,"female":0.54},{"number":7,"district":"区县7","male":0.48,"female":0.52}],
+                "schools": [{"number":1,"school":"学校1","male":0.62,"female":0.38},{"number":2,"school":"学校2","male":0.23,"female":0.77},{"number":3,"school":"学校3","male":0.43,"female":0.57},{"number":4,"school":"学校4","male":0.3,"female":0.7},{"number":5,"school":"学校5","male":0.34,"female":0.66},{"number":6,"school":"学校6","male":0.49,"female":0.51},{"number":7,"school":"学校7","male":0.47,"female":0.53}]
+            },
+            "userDisDetail": {
+                "districts": [{"district":"全部","userCount":6060,"teacherCount":1057,"studentCount":3917,"parentCount":1086},{"district":"区县1","userCount":971,"teacherCount":193,"studentCount":616,"parentCount":162},{"district":"区县2","userCount":805,"teacherCount":162,"studentCount":504,"parentCount":139},{"district":"区县3","userCount":927,"teacherCount":139,"studentCount":605,"parentCount":183},{"district":"区县4","userCount":829,"teacherCount":151,"studentCount":535,"parentCount":143},{"district":"区县5","userCount":812,"teacherCount":137,"studentCount":483,"parentCount":192},{"district":"区县6","userCount":806,"teacherCount":183,"studentCount":493,"parentCount":130},{"district":"区县7","userCount":910,"teacherCount":92,"studentCount":681,"parentCount":137}],
+                "schools": [{"school":"全部","district":"全部","userCount":6315,"teacherCount":977,"studentCount":4237,"parentCount":1101},{"school":"学校1","district":"区县X","userCount":984,"teacherCount":128,"studentCount":683,"parentCount":173},{"school":"学校2","district":"区县X","userCount":939,"teacherCount":187,"studentCount":631,"parentCount":121},{"school":"学校3","district":"区县X","userCount":854,"teacherCount":138,"studentCount":593,"parentCount":123},{"school":"学校4","district":"区县X","userCount":867,"teacherCount":109,"studentCount":583,"parentCount":175},{"school":"学校5","district":"区县X","userCount":999,"teacherCount":144,"studentCount":673,"parentCount":182},{"school":"学校6","district":"区县X","userCount":841,"teacherCount":88,"studentCount":597,"parentCount":156},{"school":"学校7","district":"区县X","userCount":831,"teacherCount":183,"studentCount":477,"parentCount":171}]
+            }
         }
-    },
-    "asset": {
-
-    }
+    ],
+    "asset": [
+        {
+            "period": "2016-2017下学期",
+            "grade": "高一",
+            "totalStatis": {
+                "over66Class": 27,
+                "schools": 273,
+                "districts": 15,
+                "classrooms": 486,
+                "teachClass": 4576,
+                "adminClass": 769
+            },
+            "dis": {
+                "legend": [{"key":"teachClass","name":"教学班"},{"key":"adminClass","name":"行政班"},{"key":"classroom","name":"教室"}],
+                "districts":[{"name":"区县1","teachClass":435,"adminClass":226,"classroom":215},{"name":"区县2","teachClass":426,"adminClass":107,"classroom":275},{"name":"区县3","teachClass":314,"adminClass":181,"classroom":281},{"name":"区县4","teachClass":291,"adminClass":315,"classroom":189}],
+                "schools":[{"name":"学校1","teachClass":465,"adminClass":186,"classroom":274},{"name":"学校2","teachClass":273,"adminClass":120,"classroom":377},{"name":"学校3","teachClass":202,"adminClass":104,"classroom":189},{"name":"学校4","teachClass":298,"adminClass":227,"classroom":396}]
+            },
+            "assetDisDetail": {
+                "districts":[{"district":"全部","classroom":1672,"adminClass":1421,"adminMeanCount":238.85714285714286,"teachClass":5951,"teachMeanCount":157},{"district":"区县1","classroom":204,"adminClass":242,"adminMeanCount":53,"teachClass":868,"teachMeanCount":157},{"district":"区县2","classroom":222,"adminClass":129,"adminMeanCount":53,"teachClass":909,"teachMeanCount":189},{"district":"区县3","classroom":266,"adminClass":163,"adminMeanCount":42,"teachClass":979,"teachMeanCount":108},{"district":"区县4","classroom":271,"adminClass":297,"adminMeanCount":44,"teachClass":857,"teachMeanCount":188},{"district":"区县5","classroom":193,"adminClass":283,"adminMeanCount":52,"teachClass":723,"teachMeanCount":120},{"district":"区县6","classroom":238,"adminClass":163,"adminMeanCount":46,"teachClass":702,"teachMeanCount":177},{"district":"区县7","classroom":278,"adminClass":144,"adminMeanCount":47,"teachClass":913,"teachMeanCount":160}],
+                "schools": [{"district":"全部","school":"全部","classroom":1624,"adminClass":1402,"adminMeanCount":232,"teachClass":5786,"teachMeanCount":152},{"district":"区县x","school":"学校1","classroom":281,"adminClass":146,"adminMeanCount":47,"teachClass":902,"teachMeanCount":133},{"district":"区县x","school":"学校2","classroom":203,"adminClass":399,"adminMeanCount":55,"teachClass":719,"teachMeanCount":116},{"district":"区县x","school":"学校3","classroom":289,"adminClass":141,"adminMeanCount":45,"teachClass":920,"teachMeanCount":176},{"district":"区县x","school":"学校4","classroom":195,"adminClass":240,"adminMeanCount":51,"teachClass":702,"teachMeanCount":133},{"district":"区县x","school":"学校5","classroom":221,"adminClass":196,"adminMeanCount":48,"teachClass":792,"teachMeanCount":184},{"district":"区县x","school":"学校6","classroom":181,"adminClass":149,"adminMeanCount":42,"teachClass":824,"teachMeanCount":157},{"district":"区县x","school":"学校7","classroom":254,"adminClass":131,"adminMeanCount":46,"teachClass":927,"teachMeanCount":165}],
+                "classes": [{"district":"区县x","school":"学校1","teachClass":"9班","studentCount":61},{"district":"区县x","school":"学校2","teachClass":"9班","studentCount":50},{"district":"区县x","school":"学校3","teachClass":"4班","studentCount":84},{"district":"区县x","school":"学校4","teachClass":"10班","studentCount":40},{"district":"区县x","school":"学校5","teachClass":"5班","studentCount":73},{"district":"区县x","school":"学校6","teachClass":"6班","studentCount":48},{"district":"区县x","school":"学校7","teachClass":"7班","studentCount":68},{"district":"区县x","school":"学校8","teachClass":"2班","studentCount":83},{"district":"区县x","school":"学校9","teachClass":"9班","studentCount":90},{"district":"区县x","school":"学校10","teachClass":"6班","studentCount":59},{"district":"区县x","school":"学校11","teachClass":"7班","studentCount":89},{"district":"区县x","school":"学校12","teachClass":"4班","studentCount":86},{"district":"区县x","school":"学校13","teachClass":"5班","studentCount":75},{"district":"区县x","school":"学校14","teachClass":"7班","studentCount":44},{"district":"区县x","school":"学校15","teachClass":"1班","studentCount":58},{"district":"区县x","school":"学校16","teachClass":"6班","studentCount":42},{"district":"区县x","school":"学校17","teachClass":"6班","studentCount":53},{"district":"区县x","school":"学校18","teachClass":"4班","studentCount":40},{"district":"区县x","school":"学校19","teachClass":"1班","studentCount":67},{"district":"区县x","school":"学校20","teachClass":"6班","studentCount":66}]
+            }
+        },
+        {
+            "period": "2017-2018上学期",
+            "grade": "高一",
+            "totalStatis": {
+                "over66Class": 30,
+                "schools": 283,
+                "districts": 12,
+                "classrooms": 503,
+                "teachClass": 5176,
+                "adminClass": 809
+            },
+            "dis": {
+                "legend": [{"key":"teachClass","name":"教学班"},{"key":"adminClass","name":"行政班"},{"key":"classroom","name":"教室"}],
+                "districts":[{"name":"区县1","teachClass":381,"adminClass":319,"classroom":324},{"name":"区县2","teachClass":424,"adminClass":345,"classroom":168},{"name":"区县3","teachClass":212,"adminClass":331,"classroom":349},{"name":"区县4","teachClass":347,"adminClass":309,"classroom":315}],
+                "schools":[{"name":"学校1","teachClass":319,"adminClass":376,"classroom":340},{"name":"学校2","teachClass":367,"adminClass":186,"classroom":184},{"name":"学校3","teachClass":225,"adminClass":281,"classroom":227},{"name":"学校4","teachClass":479,"adminClass":130,"classroom":168}]
+            },
+            "assetDisDetail": {
+                "districts":[{"district":"全部","classroom":1548,"adminClass":1501,"adminMeanCount":221.14285714285714,"teachClass":5841,"teachMeanCount":160},{"district":"区县1","classroom":248,"adminClass":345,"adminMeanCount":54,"teachClass":771,"teachMeanCount":175},{"district":"区县2","classroom":226,"adminClass":100,"adminMeanCount":55,"teachClass":796,"teachMeanCount":157},{"district":"区县3","classroom":254,"adminClass":215,"adminMeanCount":46,"teachClass":849,"teachMeanCount":170},{"district":"区县4","classroom":189,"adminClass":213,"adminMeanCount":55,"teachClass":858,"teachMeanCount":154},{"district":"区县5","classroom":182,"adminClass":109,"adminMeanCount":46,"teachClass":931,"teachMeanCount":151},{"district":"区县6","classroom":216,"adminClass":377,"adminMeanCount":43,"teachClass":797,"teachMeanCount":172},{"district":"区县7","classroom":233,"adminClass":142,"adminMeanCount":49,"teachClass":839,"teachMeanCount":141}],
+                "schools": [{"district":"全部","school":"全部","classroom":1689,"adminClass":1670,"adminMeanCount":241.28571428571428,"teachClass":5711,"teachMeanCount":137.57142857142858},{"district":"区县x","school":"学校1","classroom":202,"adminClass":268,"adminMeanCount":46,"teachClass":908,"teachMeanCount":165},{"district":"区县x","school":"学校2","classroom":230,"adminClass":155,"adminMeanCount":46,"teachClass":861,"teachMeanCount":119},{"district":"区县x","school":"学校3","classroom":230,"adminClass":267,"adminMeanCount":48,"teachClass":700,"teachMeanCount":111},{"district":"区县x","school":"学校4","classroom":286,"adminClass":131,"adminMeanCount":41,"teachClass":754,"teachMeanCount":108},{"district":"区县x","school":"学校5","classroom":193,"adminClass":243,"adminMeanCount":51,"teachClass":764,"teachMeanCount":162},{"district":"区县x","school":"学校6","classroom":265,"adminClass":304,"adminMeanCount":47,"teachClass":852,"teachMeanCount":109},{"district":"区县x","school":"学校7","classroom":283,"adminClass":302,"adminMeanCount":54,"teachClass":872,"teachMeanCount":189}],
+                "classes": [{"district":"区县x","school":"学校1","teachClass":"9班","studentCount":49},{"district":"区县x","school":"学校2","teachClass":"1班","studentCount":62},{"district":"区县x","school":"学校3","teachClass":"9班","studentCount":88},{"district":"区县x","school":"学校4","teachClass":"4班","studentCount":59},{"district":"区县x","school":"学校5","teachClass":"7班","studentCount":64},{"district":"区县x","school":"学校6","teachClass":"9班","studentCount":56},{"district":"区县x","school":"学校7","teachClass":"8班","studentCount":69},{"district":"区县x","school":"学校8","teachClass":"3班","studentCount":58},{"district":"区县x","school":"学校9","teachClass":"3班","studentCount":89},{"district":"区县x","school":"学校10","teachClass":"8班","studentCount":65},{"district":"区县x","school":"学校11","teachClass":"10班","studentCount":54},{"district":"区县x","school":"学校12","teachClass":"4班","studentCount":89},{"district":"区县x","school":"学校13","teachClass":"10班","studentCount":78},{"district":"区县x","school":"学校14","teachClass":"10班","studentCount":69},{"district":"区县x","school":"学校15","teachClass":"9班","studentCount":89},{"district":"区县x","school":"学校16","teachClass":"7班","studentCount":85},{"district":"区县x","school":"学校17","teachClass":"8班","studentCount":65},{"district":"区县x","school":"学校18","teachClass":"1班","studentCount":71},{"district":"区县x","school":"学校19","teachClass":"4班","studentCount":89},{"district":"区县x","school":"学校20","teachClass":"5班","studentCount":81}]
+            }
+        }
+    ]
 }
