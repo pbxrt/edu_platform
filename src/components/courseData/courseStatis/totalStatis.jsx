@@ -47,7 +47,6 @@ export default class TotalStatis extends React.Component {
 }
 
 function formatBubbleData(statis) {
-    debugger;
     const { subjectCount, requiredCourse, courseCount, selfSelectCourse } = statis;
     return [
         { name: '学科', count: subjectCount, radius: 62, color: 'rgba(47, 209, 198, 0.8)', left: 100, top: 245 },

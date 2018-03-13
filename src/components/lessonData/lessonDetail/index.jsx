@@ -99,7 +99,7 @@ export default class LessonDetail extends React.Component {
                 <div style={{ marginTop: 25 }} >
                     <TableView tableHeader={tableHeader} tableName={tableName} downloadkeys={tableHeader[0]} tableData={showData} cancelTableSort reserveRows />
                 </div>
-                <Paginator pageCount={pageCount} handlePageClick={this.handlePageClick.bind(this)} />
+                <Paginator pageCount={pageCount} forcePage={this.state.currentPage} handlePageClick={this.handlePageClick.bind(this)} />
             </div>
         )
     }

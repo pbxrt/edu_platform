@@ -68,7 +68,7 @@ export default class BasicInfo extends React.Component {
                         <TableView tableHeader={tableHeader} tableName={tableName} downloadkeys={tableHeader[0]} tableData={tableData} cancelTableSort reserveRows />
                     </div>
                 </div>
-                <Paginator pageCount={pageCount} handlePageClick={this.handlePageClick.bind(this)} />
+                <Paginator pageCount={pageCount} forcePage={this.state.currentPage} handlePageClick={this.handlePageClick.bind(this)} />
             </div>
         )
     }

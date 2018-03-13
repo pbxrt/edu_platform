@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import EchartsForReact from 'echarts-for-react';
-import Echarts from 'echarts';
 
 import { colorsMap } from '../../shared/constants';
 
@@ -74,13 +73,6 @@ export default class SubjectGrpCompare extends React.Component {
         )
     }
 }
-
-const dataStyle = {
-    normal: {
-        label: {show:false},
-        labelLine: {show:false}
-    }
-};
 
 const placeHolderStyle = {
     normal : {

@@ -148,3 +148,47 @@ input[use-for="select"]::-webkit-input-placeholder {
 .empty-bubble:nth-child(11) {
   animation: empty-floating 12s 12s ease infinite;
 }
+
+/*深色背景的table样式*/
+.thead-row-deep {
+  background-color: #123391;
+}
+
+.thead-row-deep>th {
+  padding: 10px 0 9px 35px;
+}
+
+.tbody-row-deep {
+  background-color: #112578;
+  border-top: 1px solid #123391;
+}
+
+.tbody-row-deep:hover {
+  background-color: #112d87;
+}
+
+.tbody-row-deep>td {
+  padding: 9px 0 9px 35px;
+}
+
+/*浅色背景的table样式*/
+.thead-row-light {
+  background-color: #123ca4;
+}
+
+.thead-row-light>th {
+  padding: 10px 0 9px 35px;
+}
+
+.tbody-row-light {
+  background-color: #113291;
+  border-top: 1px solid #123ca4;
+}
+
+.tbody-row-light:hover {
+  background-color: #11389c;
+}
+
+.tbody-row-light>td {
+  padding: 9px 0 9px 35px;
+}

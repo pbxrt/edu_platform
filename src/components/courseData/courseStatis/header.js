@@ -7,8 +7,8 @@ export default class Header extends React.Component {
         return (
             <div className='section'>
                 <div style={{ textAlign: 'center', paddingRight: 165, paddingBottom: 40, fontSize: 22 }} >{this.props.city || '宁德市'}课程数据统计</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 50 }} >
-                    <span className='section-title' >区域数据统计</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 0 }} >
+                    <span className='section-title' >区域数据统计：</span>
                     <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', paddingRight: 10 }} >
                         <Select
                             options={this.props.periodOptions}

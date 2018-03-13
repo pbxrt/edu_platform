@@ -14,6 +14,7 @@ export default class Paginator extends React.Component {
                 marginPagesDisplayed={2}
                 pageRangeDisplayed={5}
                 onPageChange={this.props.handlePageClick.bind(this)}
+                forcePage={this.props.currentPage}
                 containerClassName={"pagination"}
                 subContainerCla ssName={"pages pagination"}
                 activeClassName={"active"}

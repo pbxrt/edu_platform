@@ -1,21 +1,30 @@
 import React from 'react';
+import _ from 'lodash';
 import EchartsForReact from 'echarts-for-react'
 import Echarts from 'echarts';
 
 import { colorsMap } from '../../shared/constants';
+import Toggle from '../../commonComponents/binary-toggle';
 
 export default class AreaStatis extends React.Component {
     constructor(props) {
         super(props);
+        this.dimensions = [{ value: '区县', label: '区县' }, { value: '学校', label: '学校' }];
         this.state = {
-
-        }
+            currentDimension: this.dimensions[0]
+        };
     }
-
+    handleToggle(dimension) {
+        this.setState({ currentDimension: dimension })
+    }
     render() {
-        const option = makeOption()
+        const option = makeOption(this.props.targetData.dis, this.state.currentDimension)
         return (
             <div className='section' style={{backgroundColor: colorsMap['B02']}} >
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '25px 0' }} >
+                    <div className='section-title'>用户资源分布：</div>
+                    <Toggle options={this.dimensions} handleToggle={this.handleToggle.bind(this)} />
+                </div>
                 <EchartsForReact
                     option={option}
                     style={{ width: '100%', height: 360, position: 'relative' }}
@@ -25,9 +34,13 @@ export default class AreaStatis extends React.Component {
     }
 }
 
-function makeOption() {
-    const barWidth = 30;
-    const barGap = 0;
+function makeOption(distribution, dimension) {
+    let targetDis;
+    if(dimension.label === '区县') {
+        targetDis = distribution.districts;
+    } else {
+        targetDis = distribution.schools
+    }
     const color1 = new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
         { offset: 0, color: '#f9a815' },
         { offset: 1, color: '#ff3c99' }
@@ -40,6 +53,33 @@ function makeOption() {
         { offset: 0, color: '#fdf258' },
         { offset: 1, color: '#ffbe00' }
     ]);
+    const legendName = _.map(distribution.legend, 'name');
+    const legendKeys = _.map(distribution.legend, 'key');
+    const categories = _.map(targetDis, 'name');
+    const barWidth = 30;
+    const barGap = 0;
+    const series =
+        _.chain(legendKeys)
+        .map(key => _.map(targetDis, key))
+        .map((item, index) => ({
+            name: legendName[index],
+            type: 'bar',
+            barGap,
+            barWidth,
+            data: item,
+            itemStyle: {
+                normal: {
+                    barBorderRadius: [18, 18, 0, 0],
+                    label: {
+                        show: true,
+                        position: 'top',
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
+                }
+            }
+        })).value()
     return {
         color: [ color1, color2, color3],
         tooltip: {
@@ -49,18 +89,22 @@ function makeOption() {
             }
         },
         legend: {
-            data: ['教师', '学生', '家长'],
+            data: legendName,
             textStyle: {
                 color: '#fff',
                 fontSize: 12
             }
         },
         calculable: true,
+        grid: {
+            x: '5%',
+            x2: '0%'
+        },
         xAxis: [
             {
                 type: 'category',
                 axisTick: {show: false},
-                data: ['区域一', '区域二', '区域三', '区域四', '区域五'],
+                data: categories,
                 axisLine: {
                     lineStyle: {
                         color: '#596ba9',
@@ -104,64 +148,6 @@ function makeOption() {
                 }
             }
         ],
-        series: [
-            {
-                name: '教师',
-                type: 'bar',
-                barGap,
-                barWidth,
-                data: [320, 332, 301, 334, 390],
-                itemStyle: {
-                    normal: {
-                        barBorderRadius: [18, 18, 0, 0],
-                        label: {
-                            show: true,
-                            position: 'top',
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                name: '学生',
-                type: 'bar',
-                barGap,
-                barWidth,
-                data: [220, 182, 191, 234, 290],
-                itemStyle: {
-                    normal: {
-                        barBorderRadius: [18, 18, 0, 0],
-                        label: {
-                            show: true,
-                            position: 'top',
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                name: '家长',
-                type: 'bar',
-                barGap,
-                barWidth,
-                data: [150, 232, 201, 154, 190],
-                itemStyle: {
-                    normal: {
-                        barBorderRadius: [18, 18, 0, 0],
-                        label: {
-                            show: true,
-                            position: 'top',
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        }
-                    }
-                }
-            }
-        ]
+        series
     }
 }

@@ -1,29 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
-
-import Select from '../../../commonComponents/select';
-
-const mockData = [
-    { text: '人均授课周课时', subject: '数学', mean: 10, max: 13, min: 6, isMost: true },
-    { text: '人均授课周课时', subject: '英语', mean: 10, max: 13, min: 6, isMost: false },
-    { text: '人均授课班级', subject: '语文', mean: 10, max: 13, min: 6, isMost: true },
-    { text: '人均授课班级', subject: '物理', mean: 10, max: 13, min: 6, isMost: false }
-]
-
-const periodOptions = [
-    { value: '2017-2018年上学期1', label: '2017-2018年上学期1' },
-    { value: '2017-2018年上学期2', label: '2017-2018年上学期2' },
-    { value: '2017-2018年上学期3', label: '2017-2018年上学期3' },
-    { value: '2017-2018年上学期4', label: '2017-2018年上学期4' },
-    { value: '2017-2018年上学期5', label: '2017-2018年上学期5' }
-]
-
-const gradeOptions = [
-    { value: '高一', label: '高一' },
-    { value: '高二', label: '高二' },
-    { value: '初一', label: '初一' },
-    { value: '高三', label: '高三' }
-]
 
 const most = '#fdf258';
 const least = '#fe557a';

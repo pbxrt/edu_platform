@@ -3,6 +3,7 @@ import React from 'react';
 import FloatToggle from '../commonComponents/float-toggle';
 import UserResource from '../components/eduResourceDis/userResource';
 import AssetResource from '../components/eduResourceDis/assetResource';
+import mockData from '../mockData/eduRes.json';
 
 const options = [
     { value: '用户资源', label: '用户资源' },
@@ -25,8 +26,8 @@ export default class EduResourceDis extends React.Component {
         return (
             <div className='report' >
                 <FloatToggle options={options} handleSelect={this.handleSelect.bind(this)} />
-                { this.state.option.value==='用户资源' ? <UserResource /> : null }
-                { this.state.option.value==='资产资源' ? <AssetResource /> : null }
+                { this.state.option.value==='用户资源' ? <UserResource data={mockData} /> : null }
+                { this.state.option.value==='资产资源' ? <AssetResource data={mockData} /> : null }
             </div>
         )
     }
