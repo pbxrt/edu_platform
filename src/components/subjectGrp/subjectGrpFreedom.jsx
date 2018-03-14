@@ -36,7 +36,7 @@ export default class SubjectGrpFreedom extends React.Component {
 
     render() {
         const { targetData } = this.props;
-        const { rank } = targetData.schoolCompare;
+        const { rank } = targetData.compare;
         var { tableHeader, tableName } = makeTableInfo();
         const tableData = makeTableData(rank)
         return (

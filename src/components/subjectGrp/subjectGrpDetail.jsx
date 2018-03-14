@@ -6,20 +6,21 @@ import { colorsMap } from '../../shared/constants';
 
 export default class SubjectGrpDetail extends React.Component {
     render() {
-        let { tableHeader, tableName, downloadkeys } = makeTableInfo();
-        let tableData = this.props.targetData.schoolCompare.count
+        let isSchoolDimension = this.props.currentDimension.value === 'schoolsCompare';
+        let isTriple = this.props.currentDimension.value === 'triple';
+        let { tableHeader, tableName, downloadkeys } = makeTableInfo(isSchoolDimension);
+        let tableData = this.props.targetData.compare.count
         return (
-            <div className='section' style={{backgroundColor: colorsMap['B02']}} >
+            <div className='section' style={{backgroundColor: (isSchoolDimension || !isTriple) ? 'transparent' : colorsMap['B02']}} >
                 <div className='section-title'>各校选科组合数对比：</div>
                 <div style={{ paddingTop: 30}} >
                     <TableView
-                        tableStyle={{ borderStyle: 'solid', borderWidth: '10px 0 10px 0', borderColor: `${colorsMap['B08']} transparent #113291 transparent`}}
                         tableHeader={tableHeader}
                         tableName={tableName}
                         downloadkeys={downloadkeys}
                         tableData={tableData}
-                        headRowClassName={'thead-row-light'}
-                        bodyRowClassName={'tbody-row-light'}
+                        headRowClassName={(isSchoolDimension || !isTriple) ? 'thead-row-deep' : 'thead-row-light'}
+                        bodyRowClassName={(isSchoolDimension || !isTriple) ? 'tbody-row-deep' : 'tbody-row-light'}
                         reserveRows
                         cancelTableSort
                     />
@@ -29,8 +30,13 @@ export default class SubjectGrpDetail extends React.Component {
     }
 }
 
-function makeTableInfo() {
-    let tgkeys = [{id: 'total', name: '全体'}, {id: 's1', name: '学校1'}, {id: 's2', name: '学校2'}];
+function makeTableInfo(isSchoolDimension) {
+    let tgkeys;
+    if(isSchoolDimension) {
+        tgkeys = [{id: 'total', name: '全体'}, {id: 's1', name: '班级1'}, {id: 's2', name: '班级2'}];
+    } else {
+        tgkeys = [{id: 'total', name: '全体'}, {id: 's1', name: '学校1'}, {id: 's2', name: '学校2'}];
+    }
     let mainHeader = [{ id: 'subGrp', name: '选科组合', rowSpan: 2 }];
     let downloadkeys = [{ id: 'subGrp', name: '选科组合'}];
     let subHeader = [];

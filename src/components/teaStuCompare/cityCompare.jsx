@@ -7,7 +7,7 @@ import Toggle from '../../commonComponents/binary-toggle';
 
 const Item = ({ number, text }) => (
     <div>
-        <span style={{ color: '#f2a60d', fontSize: 20 }} >{number}</span>
+        <span style={{ color: '#f2a60d', fontSize: 28 }} >{number}</span>
         <span style={{ color: '#a8c9f0', fontSize: 14, paddingLeft: 7 }} >{text}</span>
     </div>
 )

@@ -29,14 +29,17 @@ export default class SubjectGrpCount extends React.Component {
 }
 
 function makeBasicInfo({ school, absent, student, grpType, max, min }) {
-    return [
-        { statis: school, description: '所学校' },
+    let items = [
         { statis: student, description: '名学生' },
         { statis: absent, description: '名未选' },
         { statis: grpType, description: '种组合' },
         { statis: max, description: '选科最多' },
         { statis: min, description: '选科最少' }
     ];
+    if(school) {
+        items.unshift({ statis: school, description: '所学校' })
+    }
+    return items
 }
 
 function makeOption({ groups }) {
