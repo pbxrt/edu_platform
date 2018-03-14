@@ -2,7 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import EchartsForReact from 'echarts-for-react';
 
+import TableView from '../../commonComponents/table';
 import { colorsMap } from '../../shared/constants';
+import { getPercentageFormat } from '../../lib/util';
 
 const Icon = ({ startColor, endColor, text, rate }) => (
     <div style={{ display: 'flex', flexFlow: 'column nowrap', justifyContent: 'flex-end', alignItems: 'center', padding: '0 40px'}} >
@@ -16,41 +18,27 @@ const Icon = ({ startColor, endColor, text, rate }) => (
 export default class SubjectGrpCompare extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            options: [
-                { subjectGrp: '生化政', boy: '60%', girl: '40%' },
-                { subjectGrp: '生化政', boy: '60%', girl: '40%' },
-                { subjectGrp: '生化政', boy: '60%', girl: '40%' },
-                { subjectGrp: '生化政', boy: '60%', girl: '40%' },
-                { subjectGrp: '生化政', boy: '60%', girl: '40%' },
-                { subjectGrp: '生化政', boy: '60%', girl: '40%' },
-                { subjectGrp: '生化政', boy: '60%', girl: '40%' }
-            ],
-            rate: {
-                boy: 60,
-                girl: 40
-            }
-        }
+        this.tableData = makeTableData(this.props.targetData.grpCount);
+        const { subjectGrp, male, female } = this.tableData[0];
+        this.state = { subjectGrp, male, female }
     }
 
-    componentDidMount() {
-        console.log(this.refs.circle.offsetWidth)
-        setInterval(() => {
-            let boy = _.random(0, 100);
-            this.setState({
-                rate: {
-                    boy,
-                    girl: 100-boy
-                }
-            })
-        }, 10000)
+    componentWillReceiveProps(nextProps) {
+        this.tableData = makeTableData(nextProps.targetData.grpCount);
+        const { subjectGrp, male, female } = this.tableData[0];
+        this.setState({ subjectGrp, male, female })
+    }
+
+    handleRowMouseEnter({ subjectGrp, male, female }) {
+        this.setState({ subjectGrp, male, female })
     }
 
     render() {
-        const option = makeOption()
+        const option = makeOption(this.props.targetData.grpCount)
+        const tableHeader = makeTableHeader()
         return (
             <div className='section' style={{backgroundColor: colorsMap['B02']}} >
-                <div className='section-title' >选科组合占比</div>
+                <div className='section-title' >选科组合占比：</div>
                 <div style={{ display: 'flex', height: 330 }} >
                     <div ref='circle' style={{ flex: 1 }} >
                         <EchartsForReact
@@ -58,14 +46,23 @@ export default class SubjectGrpCompare extends React.Component {
                             style={{ width: '100%', height: '100%', position: 'relative' }}
                         />
                     </div>
-                    <div style={{ flex: 1 }} >
-                        table
+                    <div style={{ flex: 1.2, overflow: 'auto' }} >
+                        <TableView
+                            tableHeader={tableHeader}
+                            tableData={this.tableData}
+                            headRowClassName={'thead-row-light'}
+                            bodyRowClassName={'tbody-row-light'}
+                            reserveRows
+                            cancelTableSort
+                            cancelDownload
+                            handleRowMouseEnter={this.handleRowMouseEnter.bind(this)}
+                        />
                     </div>
                     <div style={{ flex: 1, textAlign: 'center', display: 'flex', flexFlow: 'column nowrap', justifyContent: 'space-between' }} >
-                        <header>{'生历地'}选科男女比例分析</header>
+                        <header>{this.state.subjectGrp} 选科男女比例分析</header>
                         <div style={{ display: 'flex', justifyContent: 'center'}}>
-                            <Icon startColor='#1cb6f9' endColor='#293dbd' text='男生' rate={this.state.rate.boy} />
-                            <Icon startColor='#ff3c98' endColor='#f9a716' text='女生' rate={this.state.rate.girl} />
+                            <Icon startColor='#1cb6f9' endColor='#293dbd' text='男生' rate={this.state.male} />
+                            <Icon startColor='#ff3c98' endColor='#f9a716' text='女生' rate={this.state.female} />
                         </div>
                     </div>
                 </div>
@@ -74,17 +71,69 @@ export default class SubjectGrpCompare extends React.Component {
     }
 }
 
-const placeHolderStyle = {
-    normal : {
-        borderColor: 'rgba(0,0,0,0.1)',
-        borderWidth: 5,
-        color: 'rgba(0,0,0,0)',
-        label: {show:false},
-        labelLine: {show:false}
-    }
-};
+function makeTableHeader() {
+    const mainHeader = [
+        { id: 'subjectGrp', name: '选科组合' },
+        { id: 'rate', name: '选科占比' },
+        { id: 'male', name: '男生占比', dataFormat: getPercentageFormat },
+        { id: 'female', name: '女生占比', dataFormat: getPercentageFormat }
+    ];
+    return [mainHeader]
+}
 
-function makeOption() {
+function makeTableData({ student, groups }) {
+    let tableData = [];
+    _.each(groups, item => {
+        const row = {
+            subjectGrp: item.name,
+            rate: _.chain(item.male+item.female).divide(student).multiply(100).round(2).value(),
+            male: _.chain(item.male).divide(item.male+item.female).multiply(100).round(2).value(),
+            female: _.chain(item.female).divide(item.male+item.female).multiply(100).round(2).value()
+        }
+        tableData.push(row)
+    });
+    return tableData
+}
+
+function makeOption(grpCount) {
+    const placeHolderStyle = {
+        normal : {
+            borderColor: 'rgba(0,0,0,0.1)',
+            borderWidth: 5,
+            color: 'rgba(0,0,0,0)',
+            label: {show:false},
+            labelLine: {show:false}
+        }
+    };
+    const { student, groups } = grpCount;
+    const formatData = _.chain(groups).slice(0, 5).map(item => ({ name: item.name, rate: _.chain(item.male+item.female).divide(student).multiply(100).round(2).value()})).value()
+    const legendData = _.map(formatData, item => `${item.name}     ${item.rate}%`);
+    const radiusArr = [[137, 139], [112, 114], [87, 89], [62, 64], [37, 39]];
+    const colors = ['#ff4094', '#fc6b60', '#d0d7ec', '#0688fc', '#d0ba2c'];
+    const series = _.map(formatData, (item, index) => ({
+        name: legendData[index],
+        type:'pie',
+        clockWise:false,
+        radius : radiusArr[index],
+        hoverAnimation: false, //鼠标移入变大
+        data:[
+            {
+                value: item.rate,
+                "itemStyle": {
+                    "normal": {
+                        "borderColor": colors[index],
+                        "borderWidth": 5,
+                        labelLine: {show:false}
+                    }
+                },
+            },
+            {
+                value: 100-item.rate,
+                name:'invisible',
+                itemStyle : placeHolderStyle
+            }
+        ]
+    }));
     return  {
         color: ['#ff4094', '#fc6b60', '#d0d7ec', '#0688fc', '#d0ba2c'],
         title: {
@@ -111,129 +160,8 @@ function makeOption() {
                 color: 'auto',
             },
             icon: 'circle',
-            data: ['生化政     37%','生化历     26%','生化地     18%', '物化地     10%', '历地技     9%']
+            data: legendData
         },
-        series : [
-            {
-                name:'生化政     37%',
-                type:'pie',
-                clockWise:false,
-                radius : [137, 139],
-                hoverAnimation: false, //鼠标移入变大
-                data:[
-                    {
-                        value:37,
-                        "itemStyle": {
-                            "normal": {
-                                "borderColor": '#ff4094',
-                                "borderWidth": 5,
-                                labelLine: {show:false}
-                            }
-                        },
-                    },
-                    {
-                        value:63,
-                        name:'invisible',
-                        itemStyle : placeHolderStyle
-                    }
-                ]
-            },
-            {
-                name:'生化历     26%',
-                type:'pie',
-                clockWise:false,
-                radius : [112, 114],
-                hoverAnimation: false, //鼠标移入变大
-                data:[
-                    {
-                        value:26, 
-                        "itemStyle": {
-                            "normal": {
-                                "borderColor": '#fc6b60',
-                                "borderWidth": 5,
-                                labelLine: {show:false}
-                            }
-                        },
-                    },
-                    {
-                        value:84,
-                        name:'invisible',
-                        itemStyle : placeHolderStyle
-                    }
-                ]
-            },
-            {
-                name:'生化地     18%',
-                type:'pie',
-                clockWise:false,
-                radius : [87, 89],
-                hoverAnimation: false, //鼠标移入变大
-                data:[
-                    {
-                        value:18, 
-                        "itemStyle": {
-                            "normal": {
-                                borderColor: '#d0d7ec',
-                                "borderWidth": 5,
-                                labelLine: {show:false}
-                            }
-                        },
-                    },
-                    {
-                        value:82,
-                        name:'invisible',
-                        itemStyle : placeHolderStyle
-                    }
-                ]
-            },
-            {
-                name:'物化地     10%',
-                type:'pie',
-                clockWise:false,
-                radius : [62, 64],
-                hoverAnimation: false, //鼠标移入变大
-                data:[
-                    {
-                        value:10, 
-                        "itemStyle": {
-                            "normal": {
-                                borderColor: '#0688fc',
-                                "borderWidth": 5,
-                                labelLine: {show:false}
-                            }
-                        },
-                    },
-                    {
-                        value:90,
-                        name:'invisible',
-                        itemStyle : placeHolderStyle
-                    }
-                ]
-            },
-            {
-                name:'历地技     9%',
-                type:'pie',
-                clockWise:false,
-                radius : [37, 39],
-                hoverAnimation: false, //鼠标移入变大
-                data:[
-                    {
-                        value:9, 
-                        "itemStyle": {
-                            "normal": {
-                                borderColor: '#d0ba2c',
-                                "borderWidth": 5,
-                                labelLine: {show:false}
-                            }
-                        },
-                    },
-                    {
-                        value:91,
-                        name:'invisible',
-                        itemStyle : placeHolderStyle
-                    }
-                ]
-            }
-        ]
+        series
     };
 }

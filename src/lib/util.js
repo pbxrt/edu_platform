@@ -1,6 +1,10 @@
 import _ from 'lodash';
 import XLSX from 'xlsx';
 
+export function getPercentageFormat(tdData) {
+    return _.isNumber(tdData) ? (tdData + '%') : tdData;
+}
+
 export function formatOptions(arr) {
     return _.map(arr, item => ({
         value: item,
@@ -26,19 +30,11 @@ export function downloadData(cols, rows, tableName, isAll) {
             })
         }
     };
-    let tmpDown =
-      new Blob([s2ab(XLSX.write(tmpWB, {bookType: 'xlsx', bookSST: false, type: 'binary'} // 这里的数据是用来定义导出的格式类型
-          ))], {type: ''});  // 创建二进制对象写入转换好的字节流
-    var href = URL.createObjectURL(tmpDown)  // 创建对象超链接
-    var a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = href;
-    a.download = `${tableName}.xlsx`;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(function () {  // 延时释放
-        URL.revokeObjectURL(tmpDown) // 用URL.revokeObjectURL()来释放这个object URL
-    }, sec);
+    setTimeout(() => {
+        console.time('writeFile')
+        XLSX.writeFile(tmpWB, tableName+'.xlsx', {compression: true});
+        console.timeEnd('writeFile')
+    }, sec)
 }
 
 function formatDownloadData(cols, rows) {
@@ -53,20 +49,14 @@ function formatDownloadData(cols, rows) {
             }
         });
     });
-    midRst = midRst.reduce((prev, next) => {
-      return prev.concat(next);
-    });
-    midRst.forEach(data => {
+    let res = [];
+    _.each(midRst, row => {
+        res.push(...row)
+    })
+    res.forEach(data => {
       tempRow[data.position] = {v: data.value}
     });
     return tempRow;
-}
-
-function s2ab(s) {
-    var buf = new ArrayBuffer(s.length);
-    var view = new Uint8Array(buf);
-    for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-    return buf;
 }
 
 function getCharCol(n) { // 将指定的自然数转换为26进制表示。映射关系：[0-25] -> [A-Z]。

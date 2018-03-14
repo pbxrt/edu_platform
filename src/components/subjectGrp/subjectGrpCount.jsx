@@ -1,38 +1,24 @@
 import React from 'react';
+import _ from 'lodash';
 import EchartsForReact from 'echarts-for-react';
 import Echarts from 'echarts';
 
 const Item = ({ statis, description }) => (
     <div>
-        <span style={{ color: '#f2a60d', fontSize: 20 }} >{statis}</span>
+        <span style={{ color: '#f2a60d', fontSize: 28 }} >{statis}</span>
         <span style={{ color: '#a8c9f0', fontSize: 14, paddingLeft: 7 }} >{description}</span>
     </div>
 )
 
 export default class SubjectGrpCount extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
     render() {
-        const data = [
-            { statis: 158, description: '所学校' },
-            { statis: 87909, description: '名学生' },
-            { statis: 16, description: '名未选' },
-            { statis: 10, description: '种组合' },
-            { statis: '生化政', description: '选科最多' },
-            { statis: '物化技', description: '选科最少' }
-        ]
-        const option = makeOption()
+        const basicInfo = makeBasicInfo(this.props.targetData.grpCount)
+        const option = makeOption(this.props.targetData.grpCount)
         return (
             <div className='section' >
                 <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 25 }} >
-                    {data.map(item => <Item key={item.description} statis={item.statis} description={item.description} />)}
+                    { basicInfo.map(item => <Item key={item.description} statis={item.statis} description={item.description} />) }
                 </div>
-                <div className='section-title'>选科组合分析：</div>
                 <EchartsForReact
                     option={option}
                     style={{ width: '100%', height: 360, position: 'relative' }}
@@ -42,10 +28,21 @@ export default class SubjectGrpCount extends React.Component {
     }
 }
 
-function makeOption() {
-    const categories = ['生化政', '生化地', '生历地', '生历政', '物化历', '生历技', '生物地', '物化技'];
-    const boyCount = [200, 190, 250, 60, 160, 80, 60, 100];
-    const girlCount = [300, 230, 90, 220, 90, 120, 100, 0];
+function makeBasicInfo({ school, absent, student, grpType, max, min }) {
+    return [
+        { statis: school, description: '所学校' },
+        { statis: student, description: '名学生' },
+        { statis: absent, description: '名未选' },
+        { statis: grpType, description: '种组合' },
+        { statis: max, description: '选科最多' },
+        { statis: min, description: '选科最少' }
+    ];
+}
+
+function makeOption({ groups }) {
+    const categories = _.map(groups, 'name');
+    const boyCount = _.map(groups, 'male');
+    const girlCount = _.map(groups, 'female');
     const barWidth = 36;
     const color1 = new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
         { offset: 0, color: '#1baff3' },

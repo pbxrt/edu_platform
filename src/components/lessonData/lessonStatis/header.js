@@ -24,7 +24,7 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <header className='section' style={{paddingBottom: 0}} >
+            <header className='section' style={{ paddingTop: 45, paddingBottom: 0 }} >
                 <div style={{ textAlign: 'center', fontSize: 24, paddingRight: 165 }} >{this.props.info.city}{this.state.grade.label}课时数据统计</div>
                 <div style={{ paddingTop: 18, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }} >
                     <div className='section-title' style={{ flex: 1 }} >课时数据统计</div>

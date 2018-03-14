@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import { colorsMap } from '../../shared/constants';
-import TableView from '../../commonComponents/tableView';
+import TableView from '../../commonComponents/table';
 import { downloadData } from '../../lib/util';
 import r1 from '../../images/r1.png';
 import r2 from '../../images/r2.png';
@@ -12,18 +12,11 @@ import download_icon from '../../images/download.png';
 const rankImageMap = { r1, r2, r3 };
 
 export default class SubjectGrpFreedom extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
     handleDownload(tableHeader, tableData, tableName) {
         let cols = [], keys = [], rows = [];
         _.each(tableHeader[0], headerCell => {
             if(headerCell.id !== 'badge') {
-                if(headerCell.id === 'count') {
+                if(headerCell.id === 'subjectGrpCount') {
                     keys.push('countValue')
                 } else {
                     keys.push(headerCell.id)
@@ -42,8 +35,10 @@ export default class SubjectGrpFreedom extends React.Component {
     }
 
     render() {
+        const { targetData } = this.props;
+        const { rank } = targetData.schoolCompare;
         var { tableHeader, tableName } = makeTableInfo();
-        var  tableData = makeTableData();
+        const tableData = makeTableData(rank)
         return (
             <div className='section' >
                 <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 30}} >
@@ -58,11 +53,29 @@ export default class SubjectGrpFreedom extends React.Component {
                 </div>
                 <div style={{ padding: '20px 40px', backgroundColor: colorsMap['B06'], display: 'flex' }} >
                     <div style={{ width: 537 }} >
-                        <TableView tableHeader={tableHeader} tableName={tableName} tableData={tableData.slice(0, 8)} reserveRows cancelTableSort cancelDownload />
+                        <TableView
+                            tableHeader={tableHeader}
+                            tableName={tableName}
+                            tableData={tableData.slice(0, 8)}
+                            headRowClassName={'thead-row-school-rank-compare'}
+                            bodyRowClassName={'tbody-row-school-rank-compare'}
+                            reserveRows
+                            cancelTableSort
+                            cancelDownload
+                        />
                     </div>
                     <div style={{ width: 1, backgroundColor: colorsMap['B07'] }} ></div>
                     <div style={{ width: 537 }} >
-                        <TableView tableHeader={tableHeader} tableName={tableName} tableData={tableData.slice(8)} reserveRows cancelTableSort cancelDownload />
+                        <TableView
+                            tableHeader={tableHeader}
+                            tableName={tableName}
+                            tableData={tableData.slice(8)}
+                            headRowClassName={'thead-row-school-rank-compare'}
+                            bodyRowClassName={'tbody-row-school-rank-compare'}
+                            reserveRows
+                            cancelTableSort
+                            cancelDownload
+                        />
                     </div>
                 </div>
             </div>
@@ -71,24 +84,18 @@ export default class SubjectGrpFreedom extends React.Component {
 }
 
 function getColumnStyle(id, rowData, tableData) {
-    var normalStyle = { padding: '10px 0 10px 10px', fontSize: 14, fontWeight: 400, color: colorsMap['RN'] };
-    if(rowData.rank <= 3) {
-        return _.assign({}, normalStyle, { color: colorsMap[`R0${rowData.rank}`]})
-    }
-    return normalStyle;
+    return (rowData.rank <= 3) ? { color: colorsMap[`R0${rowData.rank}`]} : {}
 }
 
 function makeTableInfo() {
-    const cellStyle = { padding: '10px 0 10px 10px', fontSize: 14, fontWeight: 400 };
     var mainHeader = [
-        { id: 'badge', name: '', style: {width: 55}},
+        { id: 'badge', name: ''},
         { id: 'rank', name: '排名' },
-        { id: 'school', name: '学校' },
-        { id: 'count', name: '选科组合数' }
+        { id: 'name', name: '学校' },
+        { id: 'subjectGrpCount', name: '选科组合数' }
     ];
     _.each(mainHeader, headerCell => {
         if(headerCell.id !== 'badge') {
-            headerCell.style = cellStyle;
             headerCell.columnStyle = getColumnStyle;
         }
     })
@@ -96,24 +103,24 @@ function makeTableInfo() {
     return { tableHeader: [mainHeader], tableName };
 }
 
-function makeTableData() {
+function makeTableData(rank) {
     var tableData = [];
-    for(var i=0; i<16; i++) {
-        let row = {
-            rank: i+1,
-            school: `学校${i+1}`,
-            count: (
+    _.each(rank, (row, i) => {
+        let tempRow = {
+            rank: row.rank,
+            name: row.name,
+            subjectGrpCount: (
                 <div style={{ display: 'flex', alignItems: 'center' }} >
-                    <span style={{ marginRight: 12}} >{20-i}</span>
-                    <span style={{ width: (20-i)*5, height: 8, borderRadius: 4, backgroundColor: (i+1) > 3 ? colorsMap[`RN`] : colorsMap[`R0${i+1}`] }} ></span>
+                    <span style={{ marginRight: 12}} >{row.subjectGrpCount}</span>
+                    <span style={{ width: (row.subjectGrpCount)*4, height: 8, borderRadius: 4, backgroundColor: (row.rank) > 3 ? '#475e9f' : colorsMap[`R0${row.rank}`], transition: 'width 0.1s linear' }} ></span>
                 </div>
             ),
-            countValue: i+1
+            countValue: row.subjectGrpCount
         };
-        if(row.rank <= 3) {
-            row.badge = <img style={{ width: 21, height: 27 }} src={rankImageMap[`r${row.rank}`]} alt={'badge'} />;
+        if(tempRow.rank <= 3) {
+            tempRow.badge = <img style={{ width: 21, height: 27 }} src={rankImageMap[`r${tempRow.rank}`]} alt={'badge'} />;
         }
-        tableData.push(row);
-    }
+        tableData.push(tempRow);
+    })
     return tableData;
 }

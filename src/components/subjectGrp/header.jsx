@@ -1,14 +1,14 @@
 import React from 'react';
 
-import Select from '../../../commonComponents/select';
+import Select from '../../commonComponents/select';
 
 export default class Header extends React.Component {
     render() {
         return (
-            <div className='section' style={{ paddingTop: 45 }} >
-                <div style={{ textAlign: 'center', paddingRight: 165, paddingBottom: 40, fontSize: 24 }} >{this.props.city || '宁德市'}课程数据统计</div>
+            <div className='section' style={{ paddingTop: 45, paddingBottom: 0 }} >
+                <div style={{ textAlign: 'center', paddingRight: 165, paddingBottom: 40, fontSize: 24 }} >{this.props.info.city}选科组合分析报告</div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 0 }} >
-                    <span className='section-title' >区域数据统计：</span>
+                    <span className='section-title' >选科组合分析：</span>
                     <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', paddingRight: 10 }} >
                         <Select
                             options={this.props.periodOptions}
@@ -19,6 +19,7 @@ export default class Header extends React.Component {
                         <Select
                             options={this.props.gradeOptions}
                             handleSelect={this.props.selectGrade.bind(this)}
+                            width={90}
                         />
                     </div>
                 </div>

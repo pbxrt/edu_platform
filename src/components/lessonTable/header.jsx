@@ -30,7 +30,7 @@ export default class Header extends React.Component {
     render() {
         const { city } = this.props;
         return (
-            <header style={{ width: 1155, height: 110, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >
+            <header style={{ width: 1155, padding: '45px 0', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}} >
                 <div style={{ flex: 1 }} >
                     <Search
                         useFor='search-lesson-table'
@@ -42,8 +42,7 @@ export default class Header extends React.Component {
                         backgroundColor={'transparent'}
                     />
                 </div>
-                
-                <div style={{ flex: 1, textAlign: 'center', fontSize: 20 }} >{city}课表查询</div>
+                <div style={{ flex: 1, textAlign: 'center', fontSize: 24 }} >{city}课表查询</div>
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }} >
                 <Select placeholder={'选择报告...'}
                     options={this.options}

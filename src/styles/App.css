@@ -192,3 +192,66 @@ input[use-for="select"]::-webkit-input-placeholder {
 .tbody-row-light>td {
   padding: 9px 0 9px 35px;
 }
+
+/*课表查询对应的table样式*/
+.thead-row-lesson-table {
+  background-color: #123391;
+}
+
+.thead-row-lesson-table>th {
+  padding: 18px 14px 8px 28px;
+}
+
+.thead-row-lesson-table>th:not(:last-child) {
+  border-right: 2px solid #101b66;
+}
+
+.tbody-row-lesson-table {
+  background-color: #112578;
+  transition: background-color 0.5s ease;
+}
+
+.tbody-row-lesson-table:hover {
+  background-color: #122f8a;
+}
+
+.tbody-row-lesson-table>td {
+  padding: 12px 14px 11px 28px;
+  border-style: solid;
+  border-color: #123391 #101b66;
+  border-width: 1px 2px 0 0;
+}
+
+.tbody-row-lesson-table>td:last-child {
+  border-right: none;
+}
+
+/*选科组合页面各校选科组合数对比table的样式*/
+.thead-row-school-rank-compare>th{
+  padding: 10px 0 10px 10px;
+  fontSize: 14px;
+  fontWeight: 400;
+}
+
+/*🏅那一列的宽度*/
+.thead-row-school-rank-compare>th:first-child{
+  width: 55px;
+}
+
+.tbody-row-school-rank-compare>td {
+  padding: 10px 0 10px 10px;
+  color: #a8c9f0;
+}
+
+.tbody-row-school-rank-compare:hover {
+  background-color: #112d87;
+}
+
+.tbody-row-school-rank-compare>td:first-child {
+  padding: 10px 0 0 10px;
+}
+
+/*学校那一列的宽度*/
+.tbody-row-school-rank-compare>td:nth-child(3) {
+  width: 200px;
+}

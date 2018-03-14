@@ -90,10 +90,14 @@ function makeTableHeader(dimension) {
     let mainHeader = [
         { id: 'number', name: '序号' },
         { id: isDistrictDimension ? 'district' : 'school', name: isDistrictDimension ? '区县' : '学校' },
-        { id: 'male', name: '男生占比' },
-        { id: 'female', name: '女生占比' }
+        { id: 'male', name: '男生占比', dataFormat },
+        { id: 'female', name: '女生占比', dataFormat }
     ];
     return [mainHeader];
+}
+
+function dataFormat(tdData) {
+    return `${_.chain(tdData).multiply(100).round(2).value()} %`
 }
 
 function getNumber(targetRow) {

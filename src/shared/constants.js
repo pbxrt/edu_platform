@@ -28,5 +28,5 @@ export const colorsMap = {
     R01: '#FC6B60',
     R02: '#F2A60D',
     R03: '#1CB7FA',
-    RN: '#475E9F'
+    RN: '#a8c9f0'
 }

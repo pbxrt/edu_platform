@@ -52,7 +52,7 @@ export default class BasicInfo extends React.Component {
         return (
             <div className='report' >
                 <div style={{ textAlign: 'center' }} >
-                    <p style={{ fontSize: 24, color: '#fff', margin: 0, padding: '40px 0 25px 0',  }} >{city}基础信息查询</p>
+                    <p style={{ fontSize: 24, color: '#fff', margin: 0, padding: '45px 0 25px 0',  }} >{city}基础信息查询</p>
                     <Search
                         useFor='search-basic-info'
                         handleSearch={this.handleSearch.bind(this)}
