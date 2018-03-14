@@ -10,8 +10,6 @@ import FloatToggle from '../commonComponents/float-toggle';
 import { formatOptions } from '../lib/util';
 import mockData from '../mockData/subjectGrp.json';
 
-console.log(mockData)
-
 export default class SelectedSubjects extends React.Component {
     constructor(props) {
         super(props);

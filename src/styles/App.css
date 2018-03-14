@@ -208,7 +208,7 @@ input[use-for="select"]::-webkit-input-placeholder {
 
 .tbody-row-lesson-table {
   background-color: #112578;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.3s ease;
 }
 
 .tbody-row-lesson-table:hover {
