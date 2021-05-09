@@ -7,7 +7,7 @@
     "d3": "^4.13.0",
     "echarts": "3.8.5",
     "echarts-for-react": "^2.0.8",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "react": "^16.2.0",
     "react-bootstrap": "0.29.3",
     "react-dom": "^16.2.0",
